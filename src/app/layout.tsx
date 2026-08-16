@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Figtree, Newsreader } from "next/font/google";
+import { SmoothScrollProvider } from "@/components/ui/smooth-scroll";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -163,7 +164,7 @@ export default function RootLayout({
     <html
       lang="fr"
       suppressHydrationWarning
-      className={`${figtree.variable} ${newsreader.variable} h-full antialiased scroll-smooth`}
+      className={`${figtree.variable} ${newsreader.variable} h-full antialiased`}
     >
       <head>
         <script
@@ -175,7 +176,9 @@ export default function RootLayout({
         suppressHydrationWarning
         className="min-h-full flex flex-col bg-hemora-bg bg-grain text-hemora-text font-sans"
       >
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );
