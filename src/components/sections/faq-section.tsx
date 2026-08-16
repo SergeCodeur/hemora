@@ -67,7 +67,7 @@ export function FAQSection() {
       aria-labelledby="faq-title"
     >
       <Container size="default">
-        <div className="max-w-3xl lg:max-w-[780px] mx-auto space-y-12 sm:space-y-16">
+        <div className="max-w-3xl lg:max-w-[800px] mx-auto space-y-12 sm:space-y-16">
           
           {/* ========================================================================= */}
           {/* EN-TÊTE ÉDITORIAL CENTRÉ                                                 */}
@@ -80,9 +80,9 @@ export function FAQSection() {
               id="faq-title"
               className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-hemora-text tracking-tight leading-[1.12]"
             >
-              Vous avez encore une hésitation ?
+              Vous avez encore une hésitation&nbsp;?
             </h2>
-            <p className="text-hemora-muted text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-xl mx-auto pt-1">
+            <p className="text-hemora-muted text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto pt-1">
               Les réponses aux questions qu’on se pose souvent avant de donner.
             </p>
           </div>
