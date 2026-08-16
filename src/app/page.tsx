@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/sections/hero-section";
+import { StickyNavbar } from "@/components/layout/sticky-navbar";
 import { ReassuranceSection } from "@/components/sections/reassurance-section";
 import { WhyGiveSection } from "@/components/sections/why-give-section";
 import { EligibilitySection } from "@/components/sections/eligibility-section";
@@ -13,6 +14,9 @@ import { Footer } from "@/components/layout/footer";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-hemora-bg text-hemora-text">
+      {/* Navbar sticky secondaire (apparaît après 250px de scroll) */}
+      <StickyNavbar />
+
       {/* Main Content Sections (Header est intégré au conteneur maître HeroSection) */}
       <main className="flex-1">
         {/* 1 & 2. Header & Hero unifiés */}
