@@ -172,7 +172,7 @@ export function CustomSelect({
           variant === "country"
             ? "px-2 py-1 text-sm font-semibold h-[36px] w-full bg-transparent border-none hover:text-hemora-red rounded-lg"
             : variant === "filter"
-            ? `px-3.5 py-1.5 text-xs h-[36px] bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
+            ? `px-3.5 py-1.5 text-xs h-[36px] w-full bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
                 isOpen ? "border-hemora-red ring-1 ring-hemora-red/30 shadow-2xs" : ""
               }`
             : `px-2.5 sm:px-4 py-2 text-xs sm:text-sm h-11 bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${

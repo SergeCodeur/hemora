@@ -315,16 +315,17 @@ export function CentersSection() {
               </div>
             )}
 
-            {/* Ligne des filtres avancés */}
+            {/* Ligne des filtres avancés (Pleine largeur responsive sur mobile / Grille aérée) */}
             <div
-              className={`flex-wrap items-center gap-3 pt-1 ${
-                showMobileFilters ? "flex" : "hidden md:flex"
+              className={`grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap items-stretch md:items-center gap-2.5 sm:gap-3 pt-1 ${
+                showMobileFilters ? "grid" : "hidden md:flex"
               }`}
             >
               {/* Filtre Ville (Dynamique selon le pays) */}
               <CustomSelect
                 labelPrefix="Ville :"
                 variant="filter"
+                className="w-full md:w-auto"
                 options={[
                   { value: "all", label: `Toutes les villes (${currentCountryConfig.name})` },
                   ...availableCities.map((city) => ({ value: city, label: city })),
@@ -338,6 +339,7 @@ export function CentersSection() {
               <CustomSelect
                 labelPrefix="Type :"
                 variant="filter"
+                className="w-full md:w-auto"
                 options={[
                   { value: "all", label: "Tous types de dons" },
                   { value: "sang", label: "Sang total" },
@@ -358,6 +360,7 @@ export function CentersSection() {
               <CustomSelect
                 labelPrefix="Modalité :"
                 variant="filter"
+                className="w-full md:w-auto"
                 options={[
                   { value: "all", label: "Toutes modalités" },
                   { value: "sans-rdv", label: "Sans rendez-vous" },
@@ -379,15 +382,18 @@ export function CentersSection() {
                 onClick={() =>
                   setFilters((f) => ({ ...f, onlyOpenNow: !f.onlyOpenNow }))
                 }
-                className={`px-3 py-2 rounded-xl border text-xs font-medium inline-flex items-center gap-2 transition-colors cursor-pointer ${
+                className={`w-full sm:w-auto h-[36px] px-3.5 py-1.5 rounded-xl border text-xs font-medium inline-flex items-center justify-between sm:justify-start gap-2 transition-colors cursor-pointer ${
                   filters.onlyOpenNow
                     ? "bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold"
                     : "bg-white border-hemora-border text-stone-600 hover:border-stone-400"
                 }`}
                 aria-pressed={filters.onlyOpenNow}
               >
-                <Clock className="w-3.5 h-3.5" />
-                Ouvert maintenant
+                <div className="flex items-center gap-2">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>Ouvert maintenant</span>
+                </div>
+                {filters.onlyOpenNow && <Check className="w-3.5 h-3.5 text-emerald-600 sm:hidden" />}
               </button>
 
               {/* Bouton Réinitialiser */}
@@ -395,10 +401,10 @@ export function CentersSection() {
                 <button
                   type="button"
                   onClick={handleResetFilters}
-                  className="px-3 py-2 rounded-xl text-xs font-semibold text-hemora-red hover:bg-hemora-soft-red/30 inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                  className="w-full sm:w-auto h-[36px] px-3.5 py-1.5 rounded-xl text-xs font-semibold text-hemora-red hover:bg-hemora-soft-red/30 inline-flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
-                  Réinitialiser les filtres
+                  <span>Réinitialiser les filtres</span>
                 </button>
               )}
             </div>
