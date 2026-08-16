@@ -37,7 +37,7 @@ export function CenterCard({
   return (
     <div
       onClick={() => onSelect(center)}
-      className={`rounded-2xl border p-5 sm:p-6 transition-all duration-200 cursor-pointer text-left space-y-4 ${
+      className={`rounded-2xl border p-4 sm:p-6 transition-all duration-200 cursor-pointer text-left space-y-3 sm:space-y-4 ${
         isSelected
           ? "border-hemora-red bg-white shadow-md ring-1 ring-hemora-red/30"
           : "border-hemora-border bg-white hover:border-hemora-border/80 hover:shadow-2xs"
@@ -53,39 +53,39 @@ export function CenterCard({
       aria-label={`Sélectionner ${center.name}`}
     >
       {/* Haut de carte : Nom, Ville & Distance */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="space-y-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-mono font-medium text-hemora-muted uppercase tracking-wider">
+      <div className="flex items-start justify-between gap-2.5">
+        <div className="space-y-0.5 sm:space-y-1 min-w-0">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="text-[11px] sm:text-xs font-mono font-medium text-hemora-muted uppercase tracking-wider">
               {center.city}
             </span>
             <span className="text-stone-300">•</span>
-            <span className="text-xs font-sans text-stone-500 truncate">
+            <span className="text-[11px] sm:text-xs font-sans text-stone-500 truncate">
               {center.type}
             </span>
           </div>
-          <h3 className="font-serif text-lg sm:text-xl font-normal text-hemora-text tracking-tight leading-snug">
+          <h3 className="font-serif text-base sm:text-lg md:text-xl font-normal text-hemora-text tracking-tight leading-snug">
             {center.name}
           </h3>
         </div>
 
         {/* Distance si position utilisateur disponible */}
         {center.distanceKm !== undefined && (
-          <span className="shrink-0 inline-flex items-center gap-1 text-xs font-mono font-bold text-hemora-red bg-hemora-soft-red/40 px-2.5 py-1 rounded-full border border-hemora-red/20">
-            <Navigation className="w-3 h-3 rotate-45" />
+          <span className="shrink-0 inline-flex items-center gap-1 text-[11px] sm:text-xs font-mono font-bold text-hemora-red bg-hemora-soft-red/40 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-hemora-red/20">
+            <Navigation className="w-2.5 h-2.5 sm:w-3 sm:h-3 rotate-45" />
             {formatDistance(center.distanceKm)}
           </span>
         )}
       </div>
 
       {/* Adresse */}
-      <div className="flex items-center gap-2 text-xs text-hemora-muted">
+      <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-hemora-muted">
         <MapPin className="w-3.5 h-3.5 text-stone-400 shrink-0" />
         <span className="truncate">{center.address}</span>
       </div>
 
       {/* Statut d'ouverture dynamique */}
-      <div className="flex items-center gap-2 text-xs">
+      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
         <span
           className={`w-2 h-2 rounded-full shrink-0 ${
             status.isOpen ? "bg-emerald-500" : "bg-stone-300"
@@ -94,33 +94,33 @@ export function CenterCard({
         />
         <span className="font-medium text-hemora-text">{status.label}</span>
         <span className="text-stone-300">•</span>
-        <span className="text-hemora-muted">{status.detail}</span>
+        <span className="text-hemora-muted capitalize">{status.detail}</span>
       </div>
 
       {/* Tags de dons & Modalités */}
-      <div className="flex flex-wrap items-center gap-1.5 pt-1">
+      <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
         {center.accepts.map((type) => (
           <span
             key={type}
-            className="text-[11px] font-medium text-stone-600 bg-stone-100 px-2 py-0.5 rounded-md border border-stone-200/60"
+            className="text-[10px] sm:text-[11px] font-medium text-stone-600 bg-stone-100 px-1.5 sm:px-2 py-0.5 rounded-md border border-stone-200/60"
           >
             {donationLabels[type] || type}
           </span>
         ))}
-        <span className="text-[11px] text-hemora-muted px-1.5 py-0.5">
+        <span className="text-[10px] sm:text-[11px] text-hemora-muted px-1 py-0.5">
           {appointmentLabels[center.appointmentMode]}
         </span>
       </div>
 
       {/* Actions de bas de carte */}
-      <div className="pt-3 border-t border-hemora-border/60 flex items-center justify-between gap-3">
+      <div className="pt-2.5 sm:pt-3 border-t border-hemora-border/60 flex items-center justify-between gap-2">
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             onOpenDetails(center);
           }}
-          className="text-xs font-semibold text-hemora-text hover:text-hemora-red inline-flex items-center gap-1 py-1 focus-visible:outline-none focus-visible:underline cursor-pointer"
+          className="text-[11px] sm:text-xs font-semibold text-hemora-text hover:text-hemora-red inline-flex items-center gap-1 py-1 focus-visible:outline-none focus-visible:underline cursor-pointer"
         >
           Voir les détails
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -131,7 +131,7 @@ export function CenterCard({
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-600 hover:text-hemora-text bg-stone-50 hover:bg-stone-100 border border-stone-200 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-stone-600 hover:text-hemora-text bg-stone-50 hover:bg-stone-100 border border-stone-200 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-colors cursor-pointer shrink-0"
         >
           <Navigation className="w-3 h-3" />
           Itinéraire

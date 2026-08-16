@@ -151,38 +151,54 @@ export function CentersSection() {
     setIsDrawerOpen(true);
   };
 
+  // Préposition grammaticale selon le pays (au Bénin, en France, etc.)
+  const countryWithPreposition = React.useMemo(() => {
+    const name = currentCountryConfig.name;
+    if (name === "Bénin" || name === "Togo" || name === "Sénégal") return `au ${name}`;
+    if (name === "Côte d’Ivoire" || name === "France") return `en ${name}`;
+    return `en ${name}`;
+  }, [currentCountryConfig.name]);
+
+  const activeFiltersCount =
+    (filters.city !== "all" ? 1 : 0) +
+    (filters.donationType !== "all" ? 1 : 0) +
+    (filters.appointmentMode !== "all" ? 1 : 0) +
+    (filters.onlyOpenNow ? 1 : 0);
+
   return (
     <section
       id="centres"
-      className="py-16 sm:py-24 md:py-32 bg-hemora-bg bg-grain border-t border-hemora-border/60"
+      className="py-12 sm:py-24 md:py-32 bg-hemora-bg bg-grain border-t border-hemora-border/60"
       aria-labelledby="centres-title"
     >
       <Container size="default">
-        <div className="space-y-10 sm:space-y-14">
+        <div className="space-y-8 sm:space-y-12">
           
           {/* ========================================================================= */}
           {/* EN-TÊTE ÉDITORIAL & SÉLECTEUR DE PAYS DÉMONSTRATION                        */}
           {/* ========================================================================= */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="max-w-2xl space-y-3">
-              <span className="text-xs font-mono font-semibold uppercase tracking-widest text-hemora-red block">
-                Proximité & Accès Régional
-              </span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6">
+            <div className="max-w-2xl space-y-2.5 sm:space-y-3">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-xs font-mono font-semibold uppercase tracking-widest text-hemora-red block">
+                  Proximité & Accès Régional
+                </span>
+              </div>
               <h2
                 id="centres-title"
-                className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-hemora-text tracking-tight leading-[1.12]"
+                className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-hemora-text tracking-tight leading-[1.14]"
               >
-                Lieux de don en {currentCountryConfig.name}.
+                Lieux de don {countryWithPreposition}.
               </h2>
-              <p className="text-hemora-muted text-base sm:text-lg leading-relaxed pt-1">
+              <p className="text-hemora-muted text-sm sm:text-base md:text-lg leading-relaxed pt-0.5 max-w-2xl">
                 Maisons du don permanentes et centres hospitaliers : trouvez le lieu de collecte le plus proche de vous.
               </p>
             </div>
 
-            {/* Sélecteur de Pays Manuel & Visible */}
-            <div className="bg-white p-3 rounded-2xl border border-hemora-border shadow-2xs shrink-0 self-start md:self-auto min-w-[210px] space-y-1">
-              <span className="block text-[11px] font-mono uppercase tracking-wider text-stone-400 px-2">
-                Pays de démonstration
+            {/* Sélecteur de Pays Manuel & Élégant */}
+            <div className="bg-white p-2 sm:p-2.5 rounded-2xl border border-hemora-border shadow-2xs shrink-0 self-start md:self-auto w-full sm:w-auto min-w-[200px] flex items-center justify-between sm:block space-y-0.5 sm:space-y-1">
+              <span className="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-stone-400 px-1 sm:px-2">
+                Pays actif
               </span>
               <CustomSelect
                 id="country-select"
@@ -199,20 +215,22 @@ export function CentersSection() {
           </div>
 
           {/* ========================================================================= */}
-          {/* BARRE D'OUTILS : RECHERCHE, GÉOLOCALISATION & FILTRES                      */}
+          {/* BARRE D'OUTILS RESPONSIVE (RECHERCHE, GÉOLOCALISATION & FILTRES)           */}
           {/* ========================================================================= */}
-          <div className="space-y-4">
-            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+          <div className="space-y-3 sm:space-y-4">
+            
+            {/* Ligne 1 : Recherche principale + Bouton Position sur Desktop */}
+            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2.5 sm:gap-3">
               
               {/* Champ de recherche instantanée */}
               <div className="relative flex-1">
-                <Search className="w-4 h-4 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Search className="w-4 h-4 text-stone-400 absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={`Rechercher un centre, une ville (${currentCountryConfig.name})...`}
-                  className="w-full h-12 pl-11 pr-4 bg-white border border-hemora-border rounded-2xl text-sm text-hemora-text placeholder:text-stone-400 focus:outline-none focus:border-hemora-red focus:ring-1 focus:ring-hemora-red/30 transition-colors shadow-2xs"
+                  placeholder={`Rechercher une ville, un centre (${currentCountryConfig.name})...`}
+                  className="w-full h-11 sm:h-12 pl-10 sm:pl-11 pr-16 sm:pr-20 bg-white border border-hemora-border rounded-2xl text-xs sm:text-sm text-hemora-text placeholder:text-stone-400 focus:outline-none focus:border-hemora-red focus:ring-1 focus:ring-hemora-red/30 transition-colors shadow-2xs"
                   aria-label="Rechercher un centre de don"
                 />
                 {searchQuery && (
@@ -220,53 +238,60 @@ export function CentersSection() {
                     type="button"
                     onClick={() => setSearchQuery("")}
                     aria-label="Effacer la recherche"
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-stone-400 hover:text-stone-700 bg-stone-100 hover:bg-stone-200 px-2 py-0.5 rounded-full cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] text-stone-400 hover:text-stone-700 bg-stone-100 hover:bg-stone-200 px-2 py-0.5 rounded-full cursor-pointer"
                   >
                     Effacer
                   </button>
                 )}
               </div>
 
-              {/* Bouton "Utiliser ma position" avec Reverse Geocoding */}
-              <button
-                type="button"
-                onClick={handleGeolocationClick}
-                disabled={geoStatus === "requesting"}
-                className={`h-12 px-5 rounded-2xl border text-sm font-medium inline-flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs shrink-0 ${
-                  geoStatus === "success"
-                    ? "bg-hemora-soft-red/40 border-hemora-red/40 text-hemora-red font-semibold"
-                    : "bg-white border-hemora-border text-hemora-text hover:border-hemora-red/40 hover:text-hemora-red"
-                }`}
-              >
-                {geoStatus === "requesting" ? (
-                  <>
-                    <span className="w-3.5 h-3.5 rounded-full border-2 border-hemora-red border-t-transparent animate-spin" />
-                    Détection de votre position...
-                  </>
-                ) : geoStatus === "success" && detectedLocation ? (
-                  <>
-                    <Check className="w-4 h-4 text-hemora-red" />
-                    <span className="truncate max-w-[180px]">
-                      {detectedLocation.city}, {detectedLocation.country}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <Compass className="w-4 h-4 text-stone-400" />
-                    Utiliser ma position
-                  </>
-                )}
-              </button>
+              {/* Boutons d'action sur mobile (Grid 2 colonnes) vs Desktop (Alignés) */}
+              <div className="grid grid-cols-2 md:flex items-center gap-2 sm:gap-3">
+                {/* Bouton "Utiliser ma position" */}
+                <button
+                  type="button"
+                  onClick={handleGeolocationClick}
+                  disabled={geoStatus === "requesting"}
+                  className={`h-11 sm:h-12 px-3 sm:px-5 rounded-2xl border text-xs sm:text-sm font-medium inline-flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer shadow-2xs shrink-0 ${
+                    geoStatus === "success"
+                      ? "bg-hemora-soft-red/40 border-hemora-red/40 text-hemora-red font-semibold"
+                      : "bg-white border-hemora-border text-hemora-text hover:border-hemora-red/40 hover:text-hemora-red"
+                  }`}
+                >
+                  {geoStatus === "requesting" ? (
+                    <>
+                      <span className="w-3.5 h-3.5 rounded-full border-2 border-hemora-red border-t-transparent animate-spin" />
+                      <span className="truncate">Détection...</span>
+                    </>
+                  ) : geoStatus === "success" && detectedLocation ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-hemora-red shrink-0" />
+                      <span className="truncate max-w-[110px] sm:max-w-[180px]">
+                        {detectedLocation.city}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-400 shrink-0" />
+                      <span className="truncate">Ma position</span>
+                    </>
+                  )}
+                </button>
 
-              {/* Bouton filtres mobile */}
-              <button
-                type="button"
-                onClick={() => setShowMobileFilters(!showMobileFilters)}
-                className="md:hidden h-12 px-4 rounded-2xl bg-white border border-hemora-border text-sm font-medium text-hemora-text flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <SlidersHorizontal className="w-4 h-4 text-stone-500" />
-                Filtres avancés
-              </button>
+                {/* Bouton toggle filtres mobile */}
+                <button
+                  type="button"
+                  onClick={() => setShowMobileFilters(!showMobileFilters)}
+                  className={`md:hidden h-11 px-3 rounded-2xl border text-xs font-medium flex items-center justify-center gap-1.5 cursor-pointer transition-colors ${
+                    showMobileFilters || activeFiltersCount > 0
+                      ? "bg-hemora-soft-red/40 border-hemora-red/40 text-hemora-red font-semibold"
+                      : "bg-white border-hemora-border text-hemora-text"
+                  }`}
+                >
+                  <SlidersHorizontal className="w-3.5 h-3.5" />
+                  <span>Filtres {activeFiltersCount > 0 && `(${activeFiltersCount})`}</span>
+                </button>
+              </div>
             </div>
 
             {/* Notification en cas de position dans un pays non supporté */}
