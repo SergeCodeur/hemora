@@ -21,7 +21,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const siteUrl = "https://hemora.org";
+const siteUrl = "https://hemora.sergeamoussougbo.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -96,27 +96,27 @@ const structuredData = {
   "@graph": [
     {
       "@type": "MedicalOrganization",
-      "@id": "https://hemora.org/#organization",
+      "@id": "https://hemora.sergeamoussougbo.com/#organization",
       name: "Hemora",
-      url: "https://hemora.org",
-      logo: "https://hemora.org/images/hero-main-donation.webp",
+      url: "https://hemora.sergeamoussougbo.com",
+      logo: "https://hemora.sergeamoussougbo.com/images/hero-main-donation.webp",
       description:
         "Plateforme d'information et d'orientation pour les donneurs de sang bénévoles.",
       sameAs: [],
     },
     {
       "@type": "WebSite",
-      "@id": "https://hemora.org/#website",
-      url: "https://hemora.org",
+      "@id": "https://hemora.sergeamoussougbo.com/#website",
+      url: "https://hemora.sergeamoussougbo.com",
       name: "Hemora",
       publisher: {
-        "@id": "https://hemora.org/#organization",
+        "@id": "https://hemora.sergeamoussougbo.com/#organization",
       },
       inLanguage: "fr-FR",
     },
     {
       "@type": "FAQPage",
-      "@id": "https://hemora.org/#faq",
+      "@id": "https://hemora.sergeamoussougbo.com/#faq",
       mainEntity: [
         {
           "@type": "Question",

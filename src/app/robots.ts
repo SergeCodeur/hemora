@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://hemora.org/sitemap.xml",
+    sitemap: "https://hemora.sergeamoussougbo.com/sitemap.xml",
   };
 }
