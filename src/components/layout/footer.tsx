@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "./container";
 
 export function Footer() {
@@ -8,13 +9,19 @@ export function Footer() {
       <Container size="default" className="space-y-8">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-hemora-border">
           {/* Logo */}
-          <div className="space-y-1">
+          <div className="space-y-2">
             <Link
               href="#"
-              className="font-serif text-2xl font-semibold tracking-tight text-hemora-text flex items-center gap-1.5"
+              className="hover:opacity-90 transition-opacity inline-block"
+              aria-label="Hemora - Accueil"
             >
-              <span>Hemora</span>
-              <span className="w-2 h-2 rounded-full bg-hemora-red inline-block" />
+              <Image
+                src="/logo.svg"
+                alt="Hemora"
+                width={105}
+                height={35}
+                className="h-7 w-auto object-contain"
+              />
             </Link>
             <p className="text-xs text-hemora-muted">
               Plateforme d'information & orientation au don de sang.

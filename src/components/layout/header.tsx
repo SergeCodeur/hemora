@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
 
@@ -21,11 +22,17 @@ export function Header() {
         {/* Logo Gauche */}
         <Link
           href="#"
-          className="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-hemora-text hover:opacity-90 transition-opacity flex items-center gap-1.5"
+          className="hover:opacity-90 transition-opacity flex items-center"
           aria-label="Hemora - Accueil"
         >
-          <span>Hemora</span>
-          <span className="w-2 h-2 rounded-full bg-hemora-red inline-block" />
+          <Image
+            src="/logo.svg"
+            alt="Hemora"
+            width={120}
+            height={40}
+            className="h-8 sm:h-9 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Navigation Centre (Desktop Navbar pilule ultra élégante h-[42px]) */}
