@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hemora-bg: #FAF8F6;
+  --color-hemora-surface: #FFFFFF;
+  --color-hemora-text: #211D1D;
+  --color-hemora-muted: #6F6867;
+  --color-hemora-border: #E8E2DF;
+  --color-hemora-red: #A92F3D;
+  --color-hemora-red-hover: #8C2632;
+  --color-hemora-soft-red: #F8E8EA;
+  --color-hemora-dark-surface: #2B1C1E;
+
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+}
+
+:root {
+  --background: #FAF8F6;
+  --foreground: #211D1D;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Texture de grain SVG éditoriale ultra-subtile (Opacité 2.5% - 3%) */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.028'/%3E%3C/svg%3E");
+}
+
+/* Supprimer les flèches d'incrément/décrément par défaut des inputs de type number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
