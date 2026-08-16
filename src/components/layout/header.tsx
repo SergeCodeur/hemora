@@ -3,7 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 
 export function Header() {
@@ -14,7 +15,20 @@ export function Header() {
     { href: "#eligibilite", label: "Éligibilité" },
     { href: "#deroulement", label: "Déroulement" },
     { href: "#centres", label: "Centres" },
+    { href: "#faq", label: "FAQ" },
   ];
+
+  // Empêche le défilement d'arrière-plan quand le menu mobile est ouvert
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header className="w-full pt-0 pb-2 sm:pb-4 mb-6 sm:mb-10">
@@ -69,52 +83,92 @@ export function Header() {
         {/* Bouton Burger Mobile */}
         <button
           type="button"
-          className="md:hidden inline-flex items-center justify-center p-2.5 rounded-full text-hemora-text hover:bg-hemora-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red border border-hemora-border bg-white h-[42px] w-[42px]"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden inline-flex items-center justify-center p-2.5 rounded-full text-hemora-text hover:bg-hemora-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red border border-hemora-border bg-white h-[42px] w-[42px] cursor-pointer"
+          onClick={() => setMobileMenuOpen(true)}
           aria-expanded={mobileMenuOpen}
-          aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label="Ouvrir le menu"
         >
-          {mobileMenuOpen ? (
-            <X className="w-5 h-5" aria-hidden="true" />
-          ) : (
-            <Menu className="w-5 h-5" aria-hidden="true" />
-          )}
+          <Menu className="w-5 h-5" aria-hidden="true" />
         </button>
       </div>
 
-      {/* Menu mobile déroulant */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border border-hemora-border bg-hemora-surface rounded-2xl px-5 py-6 mt-4 space-y-4 shadow-sm animate-in fade-in slide-in-from-top-2 duration-200">
-          <nav
-            className="flex flex-col space-y-3 text-base font-medium text-hemora-text"
-            aria-label="Navigation mobile"
+      {/* ========================================================================= */}
+      {/* MENU MOBILE PLEIN ÉCRAN FLUIDE & ÉPURÉ (CHARTE ÉDITORIALE HEMORA)        */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs md:hidden flex flex-col justify-end sm:justify-center p-3 sm:p-6"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2.5 px-3 rounded-xl hover:bg-hemora-bg transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="pt-3 border-t border-hemora-border">
-            <Button
-              variant="primary"
-              className="w-full text-base h-[48px]"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                const el = document.querySelector("#eligibilite");
-                el?.scrollIntoView({ behavior: "smooth" });
-              }}
+            <motion.div
+              initial={{ y: "100%", opacity: 0.8 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "100%", opacity: 0 }}
+              transition={{ type: "spring", damping: 28, stiffness: 280 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-hemora-bg bg-grain rounded-3xl border border-hemora-border p-6 sm:p-8 space-y-6 w-full max-w-md mx-auto relative shadow-lg"
             >
-              Vérifier mon éligibilité
-            </Button>
-          </div>
-        </div>
-      )}
+              {/* En-tête du menu mobile : Logo SVG officiel + Bouton Fermer épuré */}
+              <div className="flex items-center justify-between pb-4 border-b border-hemora-border/80">
+                <Link
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center"
+                  aria-label="Hemora - Accueil"
+                >
+                  <Image
+                    src="/logo.svg"
+                    alt="Hemora"
+                    width={110}
+                    height={36}
+                    className="h-8 w-auto object-contain"
+                  />
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-10 h-10 rounded-full border border-hemora-border bg-white text-hemora-text flex items-center justify-center hover:border-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red cursor-pointer transition-colors"
+                  aria-label="Fermer le menu"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Liens de navigation épurés et lisibles */}
+              <nav className="flex flex-col space-y-1" aria-label="Navigation mobile">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="py-3 px-3.5 rounded-2xl text-hemora-text hover:text-hemora-red hover:bg-white/80 font-medium text-base sm:text-lg flex items-center justify-between transition-all"
+                  >
+                    <span>{link.label}</span>
+                    <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-hemora-red" />
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Bouton CTA d'action principal */}
+              <div className="pt-2">
+                <a
+                  href="#eligibilite"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="inline-flex items-center justify-center h-12 px-6 text-base font-medium text-white bg-hemora-red hover:bg-hemora-red-hover rounded-full transition-colors w-full cursor-pointer shadow-xs"
+                >
+                  Vérifier mon éligibilité
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
