@@ -17,9 +17,9 @@ export function Footer() {
     >
       <Container size="default" className="space-y-8 sm:space-y-10">
         {/* 1. BLOC PRINCIPAL : Logo & Baseline + Navigation sobre */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8">
           {/* Logo Texte & Baseline */}
-          <div className="space-y-1.5 max-w-sm">
+          <div className="space-y-1 max-w-xs">
             <a
               href="#"
               onClick={(e) => handleSmoothScroll(e, "#")}
@@ -33,43 +33,43 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Liens de navigation simples */}
+          {/* Liens de navigation simples (alignés sur une seule ligne sans cassure orpheline) */}
           <nav
-            className="flex flex-wrap items-center gap-x-6 sm:gap-x-7 gap-y-2 text-xs sm:text-sm font-medium text-hemora-muted"
+            className="flex flex-wrap items-center gap-x-4 sm:gap-x-5 lg:gap-x-7 gap-y-2 text-xs sm:text-sm font-medium text-hemora-muted"
             aria-label="Navigation pied de page"
           >
             <a
               href="#eligibilite"
               onClick={(e) => handleSmoothScroll(e, "#eligibilite")}
-              className="hover:text-hemora-text transition-colors py-1 cursor-pointer"
+              className="hover:text-hemora-text transition-colors py-1 cursor-pointer whitespace-nowrap"
             >
               Éligibilité
             </a>
             <a
               href="#deroulement"
               onClick={(e) => handleSmoothScroll(e, "#deroulement")}
-              className="hover:text-hemora-text transition-colors py-1 cursor-pointer"
+              className="hover:text-hemora-text transition-colors py-1 cursor-pointer whitespace-nowrap"
             >
               Déroulement
             </a>
             <a
               href="#reserves"
               onClick={(e) => handleSmoothScroll(e, "#reserves")}
-              className="hover:text-hemora-text transition-colors py-1 cursor-pointer"
+              className="hover:text-hemora-text transition-colors py-1 cursor-pointer whitespace-nowrap"
             >
               Réserves
             </a>
             <a
               href="#centres"
               onClick={(e) => handleSmoothScroll(e, "#centres")}
-              className="hover:text-hemora-text transition-colors py-1 cursor-pointer"
+              className="hover:text-hemora-text transition-colors py-1 cursor-pointer whitespace-nowrap"
             >
               Centres
             </a>
             <a
               href="#faq"
               onClick={(e) => handleSmoothScroll(e, "#faq")}
-              className="hover:text-hemora-text transition-colors py-1 cursor-pointer"
+              className="hover:text-hemora-text transition-colors py-1 cursor-pointer whitespace-nowrap"
             >
               FAQ
             </a>
@@ -79,7 +79,7 @@ export function Footer() {
         {/* 2. BLOC SECONDAIRE EN BAS (Séparé par une seule fine ligne horizontale) */}
         <div className="pt-6 sm:pt-8 border-t border-hemora-border/60 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs text-hemora-muted/90">
           {/* Disclaimer médical court */}
-          <p className="max-w-xl text-[11px] sm:text-xs leading-relaxed text-hemora-muted">
+          <p className="max-w-lg lg:max-w-xl text-[11px] sm:text-xs leading-relaxed text-hemora-muted">
             Les informations fournies par Hemora sont données à titre indicatif. Seul un entretien individuel avec un professionnel de santé peut confirmer votre aptitude au don.
           </p>
 
