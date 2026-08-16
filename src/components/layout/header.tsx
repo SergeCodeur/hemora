@@ -18,6 +18,18 @@ export function Header() {
     { href: "#faq", label: "FAQ" },
   ];
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const targetElement = document.querySelector(href);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   // Empêche le défilement d'arrière-plan quand le menu mobile est ouvert
   React.useEffect(() => {
     if (mobileMenuOpen) {
@@ -34,9 +46,10 @@ export function Header() {
     <header className="w-full pt-0 pb-2 sm:pb-4 mb-6 sm:mb-10">
       <div className="flex items-center justify-between">
         {/* Logo Gauche */}
-        <Link
+        <a
           href="#"
-          className="hover:opacity-90 transition-opacity flex items-center"
+          onClick={(e) => handleSmoothScroll(e, "#")}
+          className="hover:opacity-90 transition-opacity flex items-center cursor-pointer"
           aria-label="Hemora - Accueil"
         >
           <Image
@@ -47,7 +60,7 @@ export function Header() {
             className="h-8 sm:h-9 w-auto object-contain"
             priority
           />
-        </Link>
+        </a>
 
         {/* Navigation Centre (Desktop Navbar pilule ultra élégante h-[42px]) */}
         <nav
@@ -55,13 +68,14 @@ export function Header() {
           aria-label="Navigation principale"
         >
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
-              className="hover:text-hemora-text transition-colors"
+              onClick={(e) => handleSmoothScroll(e, link.href)}
+              className="hover:text-hemora-text transition-colors cursor-pointer"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
@@ -143,15 +157,18 @@ export function Header() {
               {/* Liens de navigation épurés et lisibles */}
               <nav className="flex flex-col space-y-1" aria-label="Navigation mobile">
                 {navLinks.map((link) => (
-                  <Link
+                  <a
                     key={link.href}
                     href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="py-3 px-3.5 rounded-2xl text-hemora-text hover:text-hemora-red hover:bg-white/80 font-medium text-base sm:text-lg flex items-center justify-between transition-all"
+                    onClick={(e) => {
+                      setMobileMenuOpen(false);
+                      handleSmoothScroll(e, link.href);
+                    }}
+                    className="py-3 px-3.5 rounded-2xl text-hemora-text hover:text-hemora-red hover:bg-white/80 font-medium text-base sm:text-lg flex items-center justify-between transition-all cursor-pointer"
                   >
                     <span>{link.label}</span>
                     <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-hemora-red" />
-                  </Link>
+                  </a>
                 ))}
               </nav>
 
@@ -159,7 +176,10 @@ export function Header() {
               <div className="pt-2">
                 <a
                   href="#eligibilite"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    handleSmoothScroll(e, "#eligibilite");
+                  }}
                   className="inline-flex items-center justify-center h-12 px-6 text-base font-medium text-white bg-hemora-red hover:bg-hemora-red-hover rounded-full transition-colors w-full cursor-pointer shadow-xs"
                 >
                   Vérifier mon éligibilité

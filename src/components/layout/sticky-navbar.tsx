@@ -7,19 +7,30 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function StickyNavbar() {
   const [isVisible, setIsVisible] = React.useState(false);
+  const lastScrollYRef = React.useRef(0);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      // Afficher la capsule flottante après 250px de défilement
-      if (window.scrollY > 250) {
-        setIsVisible(true);
-      } else {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollYRef.current;
+
+      // 1. Si on est tout en haut de la page (Hero), la navbar reste masquée
+      if (currentScrollY < 200) {
         setIsVisible(false);
       }
+      // 2. Si on remonte (Scroll Up) avec au moins 6px de delta : on l'affiche
+      else if (delta < -6) {
+        setIsVisible(true);
+      }
+      // 3. Si on descend (Scroll Down) avec au moins 6px de delta : on la masque
+      else if (delta > 6) {
+        setIsVisible(false);
+      }
+
+      lastScrollYRef.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -31,6 +42,18 @@ export function StickyNavbar() {
     { href: "#deroulement", label: "Déroulement" },
     { href: "#centres", label: "Centres" },
   ];
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const targetElement = document.querySelector(href);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -47,9 +70,10 @@ export function StickyNavbar() {
             aria-label="Navigation flottante compacte"
           >
             {/* Logo Wordmark Hemora */}
-            <Link
+            <a
               href="#"
-              className="hover:opacity-90 transition-opacity flex items-center shrink-0 pr-1"
+              onClick={(e) => handleSmoothScroll(e, "#")}
+              className="hover:opacity-90 transition-opacity flex items-center shrink-0 pr-1 cursor-pointer"
               aria-label="Hemora - Haut de page"
             >
               <Image
@@ -60,18 +84,19 @@ export function StickyNavbar() {
                 className="h-6 w-auto object-contain"
                 priority
               />
-            </Link>
+            </a>
 
             {/* Liens de navigation centraux (Desktop & Tablette) */}
             <div className="hidden sm:flex items-center gap-5 text-xs md:text-sm font-medium text-hemora-muted px-1">
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.href}
                   href={link.href}
-                  className="hover:text-hemora-text transition-colors py-0.5"
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
+                  className="hover:text-hemora-text transition-colors py-0.5 cursor-pointer"
                 >
                   {link.label}
-                </Link>
+                </a>
               ))}
             </div>
 
@@ -79,6 +104,7 @@ export function StickyNavbar() {
             <div className="flex items-center shrink-0">
               <a
                 href="#eligibilite"
+                onClick={(e) => handleSmoothScroll(e, "#eligibilite")}
                 className="inline-flex items-center justify-center h-8 sm:h-9 px-3.5 sm:px-4 text-xs font-semibold text-white bg-hemora-red hover:bg-hemora-red-hover rounded-full transition-colors cursor-pointer shadow-xs whitespace-nowrap"
               >
                 Vérifier mon éligibilité

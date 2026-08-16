@@ -78,8 +78,9 @@ body {
   background-color: rgba(169, 47, 61, 0.45);
 }
 
-/* Optimisation du rendu pour un défilement 60/120 FPS constant */
+/* Optimisation du rendu et défilement animé doux lors des clics sur les ancres */
 html {
+  scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -66,12 +66,27 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       }
     };
 
+    // Lors d'un clic d'ancre, réinitialiser la cible pour une synchronisation immédiate
+    const onAnchorClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement | null)?.closest("a[href^='#']");
+      if (anchor) {
+        isRunning = false;
+        cancelAnimationFrame(animationFrameId);
+        setTimeout(() => {
+          currentY = window.scrollY;
+          targetY = window.scrollY;
+        }, 50);
+      }
+    };
+
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("click", onAnchorClick, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("click", onAnchorClick);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
