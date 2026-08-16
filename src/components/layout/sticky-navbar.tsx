@@ -82,10 +82,10 @@ export function StickyNavbar() {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: -40, opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-2 sm:top-3.5 left-1/2 -translate-x-1/2 z-50 pointer-events-auto"
+            className="fixed top-2.5 sm:top-3.5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-md sm:w-auto sm:max-w-fit pointer-events-auto"
           >
             <nav
-              className="flex items-center justify-between gap-3 sm:gap-5 bg-white/90 backdrop-blur-md border border-hemora-border/90 pl-3.5 sm:pl-5 pr-1.5 py-1.5 rounded-full shadow-md shadow-stone-900/5 transition-all"
+              className="flex items-center justify-between sm:justify-center gap-3 sm:gap-5 bg-white/90 backdrop-blur-md border border-hemora-border/90 pl-4 sm:pl-5 pr-2 sm:pr-1.5 py-1.5 rounded-full shadow-md shadow-stone-900/5 transition-all w-full"
               aria-label="Navigation flottante compacte"
             >
               {/* Logo Wordmark Hemora */}
@@ -98,9 +98,9 @@ export function StickyNavbar() {
                 <Image
                   src="/logo.svg"
                   alt="Hemora"
-                  width={85}
-                  height={28}
-                  className="h-5 sm:h-6 w-auto object-contain"
+                  width={95}
+                  height={30}
+                  className="h-6 w-auto object-contain"
                   priority
                 />
               </a>
@@ -134,11 +134,11 @@ export function StickyNavbar() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="sm:hidden inline-flex items-center justify-center w-7 h-7 rounded-full bg-hemora-bg border border-hemora-border text-hemora-text hover:bg-stone-100 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red"
+                className="sm:hidden inline-flex items-center justify-center w-8 h-8 rounded-full bg-hemora-bg border border-hemora-border text-hemora-text hover:bg-stone-100 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red"
                 aria-label="Ouvrir le menu de navigation"
                 aria-expanded={mobileMenuOpen}
               >
-                <Menu className="w-3.5 h-3.5" />
+                <Menu className="w-4 h-4" />
               </button>
             </nav>
           </motion.div>
