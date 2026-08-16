@@ -475,14 +475,14 @@ export function EligibilitySection() {
                         </div>
                       </div>
                     ) : (
-                      <form onSubmit={handleDateSubmit} className="space-y-5 animate-in fade-in duration-200">
+                      <form onSubmit={handleDateSubmit} className="space-y-4 animate-in fade-in duration-200">
                         <label className="block font-serif text-lg sm:text-xl text-hemora-text">
                           À quelle date a eu lieu votre dernier don ?
                         </label>
-                        <div className="space-y-4">
+                        <div className="space-y-3.5">
                           
                           {/* SÉLECTEURS TRIPLE UNIFIÉS & ACCESSIBLES */}
-                          <div className="grid grid-cols-3 gap-2.5 sm:gap-3 relative z-30">
+                          <div className="grid grid-cols-3 gap-2 sm:gap-3 relative z-30">
                             <CustomSelect
                               placeholder="Jour"
                               value={selectedDay}
@@ -509,11 +509,11 @@ export function EligibilitySection() {
                             />
                           </div>
 
-                          <div className="flex flex-col sm:flex-row gap-2 justify-end relative z-10 pt-2">
+                          <div className="grid grid-cols-2 gap-2.5 sm:flex sm:justify-end sm:gap-3 relative z-10 pt-1">
                             <Button
                               type="button"
                               variant="secondary"
-                              className="h-[50px] px-6 w-full sm:w-auto order-2 sm:order-1"
+                              className="h-11 sm:h-[50px] px-4 sm:px-6 w-full sm:w-auto"
                               onClick={() => {
                                 setHasGivenBefore(null);
                                 setSelectedDay("");
@@ -527,7 +527,7 @@ export function EligibilitySection() {
                             <Button 
                               type="submit" 
                               variant="primary" 
-                              className="h-[50px] px-8 w-full sm:w-auto order-1 sm:order-2"
+                              className="h-11 sm:h-[50px] px-6 sm:px-8 w-full sm:w-auto"
                               disabled={!isDateSelectorDirty}
                             >
                               Calculer

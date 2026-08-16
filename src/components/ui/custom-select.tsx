@@ -36,6 +36,12 @@ export function CustomSelect({
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
+  const [placement, setPlacement] = React.useState<{
+    alignRight: boolean;
+    openUp: boolean;
+    maxWidth: number;
+  }>({ alignRight: false, openUp: false, maxWidth: 280 });
+
   const containerRef = React.useRef<HTMLDivElement>(null);
   const triggerRef = React.useRef<HTMLButtonElement>(null);
   const listboxRef = React.useRef<HTMLUListElement>(null);
@@ -43,9 +49,32 @@ export function CustomSelect({
   const selectedIndex = options.findIndex((opt) => opt.value === value);
   const selectedOption = options[selectedIndex];
 
-  // Synchronise l'index focalisé à l'ouverture
+  // Calcul dynamique de l'espace disponible à l'ouverture (évite tout overflow horizontal/vertical)
   React.useEffect(() => {
-    if (isOpen) {
+    if (isOpen && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      // Espace horizontal
+      const spaceRight = viewportWidth - rect.left;
+      const spaceLeft = rect.right;
+      const neededWidth = Math.min(260, viewportWidth - 24);
+
+      // Si l'espace à droite est insuffisant pour afficher le menu sans déborder
+      const shouldAlignRight = spaceRight < 210 && spaceLeft >= spaceRight;
+
+      // Espace vertical
+      const spaceBelow = viewportHeight - rect.bottom;
+      const spaceAbove = rect.top;
+      const shouldOpenUp = spaceBelow < 220 && spaceAbove > spaceBelow;
+
+      setPlacement({
+        alignRight: shouldAlignRight,
+        openUp: shouldOpenUp,
+        maxWidth: neededWidth,
+      });
+
       setFocusedIndex(selectedIndex >= 0 ? selectedIndex : 0);
     }
   }, [isOpen, selectedIndex]);
@@ -146,7 +175,7 @@ export function CustomSelect({
             ? `px-3.5 py-1.5 text-xs h-[36px] bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
                 isOpen ? "border-hemora-red ring-1 ring-hemora-red/30 shadow-2xs" : ""
               }`
-            : `px-4 py-2 text-sm h-11 bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
+            : `px-2.5 sm:px-4 py-2 text-xs sm:text-sm h-11 bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
                 isOpen ? "border-hemora-red ring-1 ring-hemora-red/30 shadow-2xs" : ""
               }`
         }`}
@@ -172,18 +201,25 @@ export function CustomSelect({
         />
       </button>
 
-      {/* Menu déroulant avec marges internes aérées et alignement parfait */}
+      {/* Menu déroulant avec positionnement adaptatif anti-débordement */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -4, scale: 0.98 }}
-            animate={{ opacity: 1, y: 4, scale: 1 }}
-            exit={{ opacity: 0, y: -4, scale: 0.98 }}
+            initial={{ opacity: 0, y: placement.openUp ? 4 : -4, scale: 0.98 }}
+            animate={{ opacity: 1, y: placement.openUp ? -4 : 4, scale: 1 }}
+            exit={{ opacity: 0, y: placement.openUp ? 4 : -4, scale: 0.98 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className={`absolute left-0 z-50 mt-1 bg-white rounded-2xl border border-hemora-border shadow-xl overflow-hidden p-1.5 backdrop-blur-md ${
+            style={{
+              maxWidth: variant === "country" ? "100%" : `${placement.maxWidth}px`,
+            }}
+            className={`absolute z-50 bg-white rounded-2xl border border-hemora-border shadow-xl overflow-hidden p-1.5 backdrop-blur-md ${
+              placement.openUp ? "bottom-full mb-1" : "top-full mt-1"
+            } ${
               variant === "country"
                 ? "w-full min-w-full left-0 right-0"
-                : "min-w-[200px] max-w-[280px]"
+                : placement.alignRight
+                ? "right-0 left-auto min-w-[160px]"
+                : "left-0 right-auto min-w-[160px]"
             }`}
           >
             <ul
