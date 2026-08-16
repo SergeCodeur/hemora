@@ -35,10 +35,30 @@ export function CustomSelect({
   ariaLabel,
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [focusedIndex, setFocusedIndex] = React.useState<number>(-1);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
   const listboxRef = React.useRef<HTMLUListElement>(null);
 
-  const selectedOption = options.find((opt) => opt.value === value);
+  const selectedIndex = options.findIndex((opt) => opt.value === value);
+  const selectedOption = options[selectedIndex];
+
+  // Synchronise l'index focalisé à l'ouverture
+  React.useEffect(() => {
+    if (isOpen) {
+      setFocusedIndex(selectedIndex >= 0 ? selectedIndex : 0);
+    }
+  }, [isOpen, selectedIndex]);
+
+  // Défilement automatique vers l'élément focalisé
+  React.useEffect(() => {
+    if (isOpen && listboxRef.current && focusedIndex >= 0) {
+      const activeElement = listboxRef.current.children[focusedIndex] as HTMLElement;
+      if (activeElement) {
+        activeElement.scrollIntoView({ block: "nearest" });
+      }
+    }
+  }, [focusedIndex, isOpen]);
 
   // Fermeture au clic à l'extérieur
   React.useEffect(() => {
@@ -56,42 +76,78 @@ export function CustomSelect({
     };
   }, [isOpen]);
 
-  // Fermeture touche Escape
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
+  // Gestion complète du clavier (Tabulation, Flèches, Entrée, Échap)
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isOpen) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setIsOpen(true);
       }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+      return;
+    }
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setFocusedIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setFocusedIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
+        break;
+      case "Enter":
+      case " ":
+        e.preventDefault();
+        if (focusedIndex >= 0 && focusedIndex < options.length) {
+          onChange(options[focusedIndex].value);
+          setIsOpen(false);
+          triggerRef.current?.focus();
+        }
+        break;
+      case "Escape":
+        e.preventDefault();
+        setIsOpen(false);
+        triggerRef.current?.focus();
+        break;
+      case "Tab":
+        // Permet au focus de circuler naturellement au prochain élément
+        setIsOpen(false);
+        break;
+    }
+  };
 
   const handleSelect = (val: string) => {
     onChange(val);
     setIsOpen(false);
+    triggerRef.current?.focus();
   };
 
   return (
-    <div ref={containerRef} className={`relative inline-block ${className}`}>
-      {/* Bouton déclencheur */}
+    <div
+      ref={containerRef}
+      onKeyDown={handleKeyDown}
+      className={`relative inline-block ${className}`}
+    >
+      {/* Bouton déclencheur avec focus visible accessible */}
       <button
+        ref={triggerRef}
         id={id}
         type="button"
         role="combobox"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
+        aria-controls={isOpen ? `${id || "custom-select"}-listbox` : undefined}
         aria-label={ariaLabel || labelPrefix || placeholder}
         onClick={() => setIsOpen(!isOpen)}
-        className={`group flex items-center justify-between gap-2 text-left transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red/30 ${
+        className={`group flex items-center justify-between gap-2 text-left transition-all duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red focus-visible:ring-offset-1 ${
           variant === "country"
-            ? "px-2 py-1 text-sm font-semibold h-[36px] w-full bg-transparent border-none hover:text-hemora-red"
+            ? "px-2 py-1 text-sm font-semibold h-[36px] w-full bg-transparent border-none hover:text-hemora-red rounded-lg"
             : variant === "filter"
-            ? `px-3 py-1.5 text-xs h-[34px] bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
-                isOpen ? "border-hemora-red shadow-xs ring-1 ring-hemora-red/20" : ""
+            ? `px-3.5 py-1.5 text-xs h-[36px] bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
+                isOpen ? "border-hemora-red ring-1 ring-hemora-red/30 shadow-2xs" : ""
               }`
-            : `px-3.5 py-2 text-sm h-11 bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
-                isOpen ? "border-hemora-red shadow-xs ring-1 ring-hemora-red/20" : ""
+            : `px-4 py-2 text-sm h-11 bg-white border border-hemora-border rounded-xl hover:border-stone-400 ${
+                isOpen ? "border-hemora-red ring-1 ring-hemora-red/30 shadow-2xs" : ""
               }`
         }`}
       >
@@ -116,7 +172,7 @@ export function CustomSelect({
         />
       </button>
 
-      {/* Menu déroulant sur mesure */}
+      {/* Menu déroulant avec marges internes aérées et accessibilité clavier */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -124,27 +180,37 @@ export function CustomSelect({
             animate={{ opacity: 1, y: 4, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.98 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className={`absolute left-0 z-50 mt-1 min-w-[200px] max-w-[280px] bg-white rounded-2xl border border-hemora-border shadow-xl overflow-hidden py-1.5 backdrop-blur-md ${
-              variant === "country" ? "w-full min-w-[220px]" : ""
+            className={`absolute left-0 z-50 mt-1 min-w-[210px] max-w-[300px] bg-white rounded-2xl border border-hemora-border shadow-xl overflow-hidden p-1.5 backdrop-blur-md ${
+              variant === "country" ? "w-full min-w-[230px]" : ""
             }`}
           >
             <ul
               ref={listboxRef}
+              id={`${id || "custom-select"}-listbox`}
               role="listbox"
               tabIndex={-1}
-              className="max-h-60 overflow-y-auto overflow-x-hidden divide-y divide-stone-100/80 focus:outline-none custom-scrollbar"
+              aria-activedescendant={
+                focusedIndex >= 0 ? `option-${focusedIndex}` : undefined
+              }
+              className="max-h-60 overflow-y-auto overflow-x-hidden space-y-0.5 pr-1 focus:outline-none custom-scrollbar"
             >
-              {options.map((option) => {
+              {options.map((option, idx) => {
                 const isSelected = option.value === value;
+                const isFocused = focusedIndex === idx;
+
                 return (
                   <li
                     key={option.value}
+                    id={`option-${idx}`}
                     role="option"
                     aria-selected={isSelected}
                     onClick={() => handleSelect(option.value)}
-                    className={`px-3.5 py-2.5 flex items-center justify-between gap-3 text-xs sm:text-sm cursor-pointer transition-colors duration-150 ${
+                    onMouseEnter={() => setFocusedIndex(idx)}
+                    className={`px-3 py-2 rounded-xl flex items-center justify-between gap-3 text-xs sm:text-sm cursor-pointer transition-all duration-100 ${
                       isSelected
-                        ? "bg-hemora-soft-red/40 text-hemora-red font-semibold"
+                        ? "bg-hemora-soft-red/50 text-hemora-red font-semibold"
+                        : isFocused
+                        ? "bg-stone-100/90 text-hemora-text"
                         : "text-hemora-text hover:bg-stone-50 hover:text-hemora-red"
                     }`}
                   >
