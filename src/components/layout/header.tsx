@@ -58,7 +58,7 @@ export function Header() {
 
         {/* Navigation Centre (Desktop Navbar pilule ultra élégante h-[42px]) */}
         <nav
-          className="hidden md:flex items-center gap-7 text-sm font-medium text-hemora-muted bg-hemora-bg px-6 h-[42px] rounded-full border border-hemora-border"
+          className="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-medium text-hemora-muted bg-hemora-bg px-6 h-[42px] rounded-full border border-hemora-border"
           aria-label="Navigation principale"
         >
           {navLinks.map((link) => (
@@ -66,7 +66,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={(e) => handleSmoothScroll(e, link.href)}
-              className="hover:text-hemora-text transition-colors cursor-pointer"
+              className="hover:text-hemora-text transition-colors cursor-pointer whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -74,24 +74,21 @@ export function Header() {
         </nav>
 
         {/* Action Droite (Desktop) - Hauteur strictement identique (42px) */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden lg:flex items-center">
           <Button
             variant="primary"
             size="sm"
-            className="text-xs sm:text-sm font-medium h-[42px] min-h-[42px] px-6"
-            onClick={() => {
-              const el = document.querySelector("#eligibilite");
-              el?.scrollIntoView({ behavior: "smooth" });
-            }}
+            className="text-xs sm:text-sm font-medium h-[42px] min-h-[42px] px-6 whitespace-nowrap"
+            onClick={() => smoothScrollTo("#eligibilite")}
           >
             Vérifier mon éligibilité
           </Button>
         </div>
 
-        {/* Bouton Burger Mobile */}
+        {/* Bouton Burger Mobile & Tablette (< 1024px) */}
         <button
           type="button"
-          className="md:hidden inline-flex items-center justify-center p-2.5 rounded-full text-hemora-text hover:bg-hemora-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red border border-hemora-border bg-white h-[42px] w-[42px] cursor-pointer"
+          className="lg:hidden inline-flex items-center justify-center p-2.5 rounded-full text-hemora-text hover:bg-hemora-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red border border-hemora-border bg-white h-[42px] w-[42px] cursor-pointer"
           onClick={() => setMobileMenuOpen(true)}
           aria-expanded={mobileMenuOpen}
           aria-label="Ouvrir le menu"
@@ -110,7 +107,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs md:hidden flex flex-col justify-end sm:justify-center p-3 sm:p-6"
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs lg:hidden flex flex-col justify-end sm:justify-center p-3 sm:p-6"
             onClick={() => setMobileMenuOpen(false)}
           >
             <motion.div
