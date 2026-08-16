@@ -82,10 +82,10 @@ export function StickyNavbar() {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: -40, opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-2.5 sm:top-3.5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-md sm:w-auto sm:max-w-fit pointer-events-auto"
+            className="fixed top-2.5 sm:top-3.5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-md lg:w-auto lg:max-w-fit pointer-events-auto"
           >
             <nav
-              className="flex items-center justify-between sm:justify-center gap-3 sm:gap-5 bg-white/90 backdrop-blur-md border border-hemora-border/90 pl-4 sm:pl-5 pr-2 sm:pr-1.5 py-1.5 rounded-full shadow-md shadow-stone-900/5 transition-all w-full"
+              className="flex items-center justify-between lg:justify-center gap-3 lg:gap-5 bg-white/90 backdrop-blur-md border border-hemora-border/90 pl-4 lg:pl-5 pr-2 lg:pr-1.5 py-1.5 rounded-full shadow-md shadow-stone-900/5 transition-all w-full"
               aria-label="Navigation flottante compacte"
             >
               {/* Logo Wordmark Hemora */}
@@ -105,22 +105,22 @@ export function StickyNavbar() {
                 />
               </a>
 
-              {/* Liens de navigation centraux (Desktop & Tablette uniquement) */}
-              <div className="hidden sm:flex items-center gap-5 text-xs md:text-sm font-medium text-hemora-muted px-1">
+              {/* Liens de navigation centraux (Desktop uniquement >= 1024px) */}
+              <div className="hidden lg:flex items-center gap-5 text-xs md:text-sm font-medium text-hemora-muted px-1">
                 {desktopNavLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     onClick={(e) => handleSmoothScroll(e, link.href)}
-                    className="hover:text-hemora-text transition-colors py-0.5 cursor-pointer"
+                    className="hover:text-hemora-text transition-colors py-0.5 cursor-pointer whitespace-nowrap"
                   >
                     {link.label}
                   </a>
                 ))}
               </div>
 
-              {/* Bouton CTA Pilule (Desktop & Tablette) */}
-              <div className="hidden sm:flex items-center shrink-0">
+              {/* Bouton CTA Pilule (Desktop uniquement >= 1024px) */}
+              <div className="hidden lg:flex items-center shrink-0">
                 <a
                   href="#eligibilite"
                   onClick={(e) => handleSmoothScroll(e, "#eligibilite")}
@@ -130,11 +130,11 @@ export function StickyNavbar() {
                 </a>
               </div>
 
-              {/* Bouton Burger Mobile (Visible UNIQUEMENT sur mobile) */}
+              {/* Bouton Burger Mobile & Tablette (< 1024px) */}
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="sm:hidden inline-flex items-center justify-center w-8 h-8 rounded-full bg-hemora-bg border border-hemora-border text-hemora-text hover:bg-stone-100 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red"
+                className="lg:hidden inline-flex items-center justify-center w-8 h-8 rounded-full bg-hemora-bg border border-hemora-border text-hemora-text hover:bg-stone-100 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red"
                 aria-label="Ouvrir le menu de navigation"
                 aria-expanded={mobileMenuOpen}
               >
@@ -146,7 +146,7 @@ export function StickyNavbar() {
       </AnimatePresence>
 
       {/* ========================================================================= */}
-      {/* TIROIR MOBILE PLEIN ÉCRAN DÉCLENCHÉ DEPUIS LA STICKY NAVBAR              */}
+      {/* TIROIR MOBILE & TABLETTE PLEIN ÉCRAN DÉCLENCHÉ DEPUIS LA STICKY NAVBAR    */}
       {/* ========================================================================= */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -155,7 +155,7 @@ export function StickyNavbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs sm:hidden flex flex-col justify-end p-3"
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs lg:hidden flex flex-col justify-end sm:justify-center p-3 sm:p-6"
             onClick={() => setMobileMenuOpen(false)}
           >
             <motion.div
