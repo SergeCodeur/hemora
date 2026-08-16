@@ -44,31 +44,23 @@ export function HeroSection() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-1">
             {/* CTA Principal */}
-            <Button
-              variant="primary"
-              className="h-[50px] px-8 text-base font-medium w-full sm:w-auto"
-              onClick={() => {
-                const el = document.querySelector("#eligibilite");
-                el?.scrollIntoView({ behavior: "smooth" });
-              }}
+            <a
+              href="#eligibilite"
+              className="inline-flex items-center justify-center h-[50px] px-8 text-base font-medium text-white bg-hemora-red hover:bg-hemora-red-hover rounded-full transition-colors w-full sm:w-auto cursor-pointer shadow-xs"
             >
               Vérifier mon éligibilité
-            </Button>
+            </a>
 
-            {/* CTA Secondaire Éditorial Capsule avec icône ArrowRight très fine et légère */}
-            <button
-              type="button"
-              onClick={() => {
-                const el = document.querySelector("#centres");
-                el?.scrollIntoView({ behavior: "smooth" });
-              }}
+            {/* CTA Secondaire Éditorial Capsule avec icône ArrowRight */}
+            <a
+              href="#centres"
               className="group h-[50px] pl-7 pr-2.5 bg-white text-hemora-text border border-hemora-border rounded-full hover:border-hemora-border/80 hover:bg-hemora-bg/60 transition-all flex items-center justify-between gap-4 cursor-pointer font-medium text-base w-full sm:w-auto"
             >
               <span>Trouver un centre</span>
               <span className="w-8 h-8 rounded-full bg-hemora-red text-white flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:translate-x-0.5">
                 <ArrowRight className="w-4 h-4 stroke-[1.75]" aria-hidden="true" />
               </span>
-            </button>
+            </a>
           </div>
         </div>
 

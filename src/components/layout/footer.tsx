@@ -41,10 +41,10 @@ export function Footer() {
           </nav>
         </div>
 
-        {/* Disclaimer & Mentions */}
+        {/* Information Médicale & Mentions */}
         <div className="space-y-4 text-xs text-hemora-muted/80 leading-relaxed">
           <p className="font-medium text-hemora-text">
-            Disclaimer médical : Les informations fournies par Hemora sont générales. Seul un entretien avec un professionnel de santé peut confirmer votre aptitude au don.
+            Information médicale : Les informations fournies par Hemora sont données à titre indicatif. Seul un entretien individuel avec un professionnel de santé peut confirmer votre aptitude au don.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-2 border-t border-hemora-border/60">
             <p>Figma to Code Challenge — Édition 4 · Projet Hemora</p>

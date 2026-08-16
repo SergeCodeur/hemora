@@ -147,7 +147,7 @@ export function TestimonialsSection() {
 
   // Défilement automatique avec Page Visibility API (évite les sauts d'onglet)
   React.useEffect(() => {
-    let timer: NodeJS.Timeout | null = null;
+    let timer: ReturnType<typeof setInterval> | null = null;
 
     const startTimer = () => {
       if (timer) clearInterval(timer);
@@ -215,8 +215,7 @@ export function TestimonialsSection() {
   return (
     <section
       id="temoignages"
-      className="py-16 sm:py-24 md:py-32 bg-white border-t border-hemora-border/60 overflow-hidden"
-      aria-roledescription="carousel"
+      className="py-16 sm:py-24 md:py-32 bg-white border-t border-hemora-border/60 overflow-hidden focus:outline-none scroll-mt-12 sm:scroll-mt-20"
       aria-label="Témoignages de premiers donneurs"
       tabIndex={0}
       onKeyDown={handleKeyDown}

@@ -63,7 +63,7 @@ export function FAQSection() {
   return (
     <section
       id="faq"
-      className="py-16 sm:py-24 md:py-32 bg-hemora-bg bg-grain border-t border-hemora-border/60"
+      className="py-16 sm:py-24 md:py-32 bg-hemora-bg bg-grain border-t border-hemora-border/60 scroll-mt-12 sm:scroll-mt-20"
       aria-labelledby="faq-title"
     >
       <Container size="default">

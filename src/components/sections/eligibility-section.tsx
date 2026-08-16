@@ -3,79 +3,10 @@
 import * as React from "react";
 import { Container } from "../layout/container";
 import { Button } from "../ui/button";
+import { CustomSelect } from "../ui/custom-select";
 import { CheckCircle2, AlertTriangle, XCircle, ArrowLeft } from "lucide-react";
 
 type Step = "intro" | "age" | "weight" | "gender" | "lastDonation" | "result";
-
-interface CustomDropdownProps {
-  label: string;
-  value: string;
-  options: { value: string; label: string }[];
-  onChange: (value: string) => void;
-}
-
-function CustomDropdown({ label, value, options, onChange }: CustomDropdownProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const selectedOption = options.find((opt) => opt.value === value);
-
-  return (
-    <div className="relative w-full z-30" ref={containerRef}>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between bg-white border border-hemora-border rounded-[16px] px-5 h-[60px] text-base sm:text-lg font-medium text-hemora-text w-full cursor-pointer hover:border-hemora-red/40 transition-colors focus:outline-none focus:ring-1 focus:ring-hemora-red/35 relative z-10"
-      >
-        <span className={value ? "text-hemora-text" : "text-hemora-muted"}>
-          {selectedOption ? selectedOption.label : label}
-        </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="2"
-          stroke="currentColor"
-          className={`w-3.5 h-3.5 text-hemora-muted transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        </svg>
-      </button>
-
-      {isOpen && (
-        <div className="absolute left-0 right-0 mt-2 bg-white border border-hemora-border rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-150 py-1">
-          {options.map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              onClick={() => {
-                onChange(opt.value);
-                setIsOpen(false);
-              }}
-              className={`w-full text-left px-5 py-3 text-sm sm:text-base font-medium transition-colors hover:bg-hemora-soft-red hover:text-hemora-red cursor-pointer ${
-                value === opt.value ? "bg-hemora-soft-red/60 text-hemora-red" : "text-hemora-text"
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 
 export function EligibilitySection() {
   const [currentStep, setCurrentStep] = React.useState<Step>("intro");
@@ -305,7 +236,11 @@ export function EligibilitySection() {
   const isDateSelectorDirty = selectedDay !== "" && selectedMonth !== "" && selectedYear !== "";
 
   return (
-    <section id="eligibilite" className="py-16 sm:py-24 md:py-32 bg-white border-t border-hemora-border/60">
+    <section
+      id="eligibilite"
+      className="py-16 sm:py-24 md:py-32 bg-white border-t border-hemora-border/60 scroll-mt-12 sm:scroll-mt-20"
+      aria-labelledby="eligibilite-title"
+    >
       <Container size="narrow">
         <div className="space-y-12">
           
@@ -546,25 +481,31 @@ export function EligibilitySection() {
                         </label>
                         <div className="space-y-4">
                           
-                          {/* SÉLECTEURS TRIPLE HAUT DE GAMME RADIX-LIKE */}
-                          <div className="grid grid-cols-3 gap-3 relative z-30">
-                            <CustomDropdown
-                              label="Jour"
+                          {/* SÉLECTEURS TRIPLE UNIFIÉS & ACCESSIBLES */}
+                          <div className="grid grid-cols-3 gap-2.5 sm:gap-3 relative z-30">
+                            <CustomSelect
+                              placeholder="Jour"
                               value={selectedDay}
                               options={dayOptions}
                               onChange={setSelectedDay}
+                              ariaLabel="Sélectionner le jour du dernier don"
+                              className="w-full"
                             />
-                            <CustomDropdown
-                              label="Mois"
+                            <CustomSelect
+                              placeholder="Mois"
                               value={selectedMonth}
                               options={monthOptions}
                               onChange={setSelectedMonth}
+                              ariaLabel="Sélectionner le mois du dernier don"
+                              className="w-full"
                             />
-                            <CustomDropdown
-                              label="Année"
+                            <CustomSelect
+                              placeholder="Année"
                               value={selectedYear}
                               options={yearOptions}
                               onChange={setSelectedYear}
+                              ariaLabel="Sélectionner l'année du dernier don"
+                              className="w-full"
                             />
                           </div>
 
@@ -629,16 +570,12 @@ export function EligibilitySection() {
                     </div>
                     
                     <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
-                      <Button
-                        variant="primary"
-                        className="h-[50px] px-8 bg-hemora-red hover:bg-hemora-red-hover text-white"
-                        onClick={() => {
-                          const el = document.querySelector("#centres");
-                          el?.scrollIntoView({ behavior: "smooth" });
-                        }}
+                      <a
+                        href="#centres"
+                        className="inline-flex items-center justify-center h-[50px] px-8 bg-hemora-red hover:bg-hemora-red-hover text-white font-medium rounded-full transition-colors cursor-pointer"
                       >
                         Trouver un centre près de moi
-                      </Button>
+                      </a>
                       <Button
                         variant="secondary"
                         className="h-[50px] px-6 border-hemora-border hover:bg-hemora-surface hover:text-hemora-text text-hemora-muted"
@@ -692,8 +629,8 @@ export function EligibilitySection() {
                       <div className="space-y-3 flex-1">
                         <h3 className="font-serif text-2xl text-hemora-text font-normal">
                           {blockedMessages.length > 1 
-                            ? "Certains critères ne sont pas remplis." 
-                            : "Ce critère n’est pas rempli."
+                            ? "Certains critères nécessitent un délai ou un avis médical." 
+                            : "Ce critère nécessite une attention particulière."
                           }
                         </h3>
                         <div className="space-y-2.5">
@@ -726,10 +663,10 @@ export function EligibilitySection() {
 
           </div>
 
-          {/* DISCLAIMER ACCESSIBLE */}
+          {/* INFORMATION MÉDICALE BIENVEILLANTE */}
           <div className="p-5 rounded-2xl border border-hemora-border/60 bg-stone-50/60 text-center max-w-xl mx-auto">
             <p className="text-xs text-hemora-muted leading-relaxed">
-              <strong>À savoir :</strong> seul un entretien médical avec un professionnel de santé peut confirmer définitivement votre aptitude au don.
+              <strong>Information médicale :</strong> seul un entretien préalable avec un professionnel de santé peut confirmer définitivement votre aptitude au don.
             </p>
           </div>
 

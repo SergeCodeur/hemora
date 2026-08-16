@@ -37,7 +37,7 @@ export function CenterCard({
   return (
     <div
       onClick={() => onSelect(center)}
-      className={`rounded-2xl border p-4 sm:p-6 transition-all duration-200 cursor-pointer text-left space-y-3 sm:space-y-4 ${
+      className={`rounded-2xl border p-4 sm:p-6 transition-all duration-200 cursor-pointer text-left space-y-3 sm:space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hemora-red focus-visible:ring-offset-2 ${
         isSelected
           ? "border-hemora-red bg-white shadow-md ring-1 ring-hemora-red/30"
           : "border-hemora-border bg-white hover:border-hemora-border/80 hover:shadow-2xs"

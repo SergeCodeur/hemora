@@ -6,7 +6,11 @@ import { Container } from "../layout/container";
 
 export function WhyGiveSection() {
   return (
-    <section id="pourquoi-donner" className="py-16 sm:py-24 md:py-32 bg-hemora-bg bg-grain border-t border-hemora-border/60">
+    <section
+      id="pourquoi-donner"
+      className="py-16 sm:py-24 md:py-32 bg-hemora-bg bg-grain border-t border-hemora-border/60 scroll-mt-12 sm:scroll-mt-20"
+      aria-labelledby="pourquoi-donner-title"
+    >
       <Container size="default">
         {/* COMPOSITION VISUELLE SIMPLIFIÉE & ACCESSIBLE */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
@@ -17,7 +21,10 @@ export function WhyGiveSection() {
               <span className="text-xs font-mono font-semibold uppercase tracking-widest text-hemora-red block">
                 Pourquoi donner
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-hemora-text tracking-tight leading-[1.12]">
+              <h2
+                id="pourquoi-donner-title"
+                className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-hemora-text tracking-tight leading-[1.12]"
+              >
                 Un don peut aider plusieurs patients.
               </h2>
               <p className="text-hemora-muted text-base sm:text-lg leading-relaxed pt-1">
@@ -32,10 +39,10 @@ export function WhyGiveSection() {
               </p>
             </div>
 
-            {/* Phrase signature discrète */}
+            {/* Phrase signature contextuelle discrète */}
             <div className="pt-2 hidden lg:block">
               <p className="font-serif italic text-hemora-red text-base sm:text-lg">
-                Donner commence par savoir.
+                Un geste simple, des vies préservées.
               </p>
             </div>
           </div>
@@ -47,7 +54,7 @@ export function WhyGiveSection() {
             <div className="relative rounded-3xl overflow-hidden border border-hemora-border/80 bg-white aspect-3/2 shadow-xs transition-transform duration-500 hover:scale-[1.005]">
               <Image
                 src="/images/why-give-editorial.jpg"
-                alt="Flacons minimalistes montrant les composants du sang"
+                alt="Flacons et éprouvettes minimalistes illustrant les composants du don de sang"
                 fill
                 priority
                 className="object-cover object-center"
@@ -94,7 +101,7 @@ export function WhyGiveSection() {
             {/* Version mobile de la phrase signature */}
             <div className="block lg:hidden pt-4 border-t border-hemora-border/60 text-center">
               <p className="font-serif italic text-hemora-red text-base sm:text-lg">
-                Donner commence par savoir.
+                Un geste simple, des vies préservées.
               </p>
             </div>
 
