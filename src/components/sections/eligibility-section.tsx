@@ -5,6 +5,7 @@ import { Container } from "../layout/container";
 import { Button } from "../ui/button";
 import { CustomSelect } from "../ui/custom-select";
 import { CheckCircle2, AlertTriangle, XCircle, ArrowLeft } from "lucide-react";
+import { smoothScrollTo } from "../ui/smooth-scroll";
 
 type Step = "intro" | "age" | "weight" | "gender" | "lastDonation" | "result";
 
@@ -572,6 +573,10 @@ export function EligibilitySection() {
                     <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center sm:justify-start">
                       <a
                         href="#centres"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          smoothScrollTo("#centres");
+                        }}
                         className="inline-flex items-center justify-center h-[50px] px-8 bg-hemora-red hover:bg-hemora-red-hover text-white font-medium rounded-full transition-colors cursor-pointer"
                       >
                         Trouver un centre près de moi

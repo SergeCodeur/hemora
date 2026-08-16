@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Container } from "../layout/container";
-import { Button } from "../ui/button";
+import { smoothScrollTo } from "../ui/smooth-scroll";
 
 export function FinalCTASection() {
   return (
@@ -24,12 +24,20 @@ export function FinalCTASection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
             <a
               href="#eligibilite"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo("#eligibilite");
+              }}
               className="inline-flex items-center justify-center h-[50px] px-8 text-base font-medium text-white bg-hemora-red hover:bg-hemora-red-hover rounded-full transition-colors w-full sm:w-auto cursor-pointer shadow-xs"
             >
               Vérifier mon éligibilité
             </a>
             <a
               href="#centres"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo("#centres");
+              }}
               className="inline-flex items-center justify-center h-[50px] px-8 text-base font-medium bg-transparent text-white border border-stone-600 hover:bg-white/10 rounded-full transition-colors w-full sm:w-auto cursor-pointer"
             >
               Trouver un centre

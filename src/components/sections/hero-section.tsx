@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Header } from "../layout/header";
 import { Button } from "../ui/button";
+import { smoothScrollTo } from "../ui/smooth-scroll";
 
 export function HeroSection() {
   return (
@@ -46,6 +47,10 @@ export function HeroSection() {
             {/* CTA Principal */}
             <a
               href="#eligibilite"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo("#eligibilite");
+              }}
               className="inline-flex items-center justify-center h-[50px] px-8 text-base font-medium text-white bg-hemora-red hover:bg-hemora-red-hover rounded-full transition-colors w-full sm:w-auto cursor-pointer shadow-xs"
             >
               Vérifier mon éligibilité
@@ -54,6 +59,10 @@ export function HeroSection() {
             {/* CTA Secondaire Éditorial Capsule avec icône ArrowRight */}
             <a
               href="#centres"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo("#centres");
+              }}
               className="group h-[50px] pl-7 pr-2.5 bg-white text-hemora-text border border-hemora-border rounded-full hover:border-hemora-border/80 hover:bg-hemora-bg/60 transition-all flex items-center justify-between gap-4 cursor-pointer font-medium text-base w-full sm:w-auto"
             >
               <span>Trouver un centre</span>
