@@ -43,13 +43,13 @@ export function StickyNavbar() {
           className="fixed top-2 sm:top-3.5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-20px)] max-w-fit pointer-events-auto"
         >
           <nav
-            className="flex items-center justify-between sm:justify-center gap-2.5 sm:gap-6 bg-white/90 backdrop-blur-md border border-hemora-border/90 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full shadow-md shadow-stone-900/5 transition-all"
+            className="flex items-center justify-between sm:justify-center gap-2.5 sm:gap-5 bg-white/90 backdrop-blur-md border border-hemora-border/90 pl-4 sm:pl-5 pr-1.5 py-1.5 rounded-full shadow-md shadow-stone-900/5 transition-all"
             aria-label="Navigation flottante compacte"
           >
             {/* Logo Wordmark Hemora */}
             <Link
               href="#"
-              className="hover:opacity-90 transition-opacity flex items-center shrink-0 pr-1 sm:pr-2"
+              className="hover:opacity-90 transition-opacity flex items-center shrink-0 pr-1"
               aria-label="Hemora - Haut de page"
             >
               <Image
@@ -63,7 +63,7 @@ export function StickyNavbar() {
             </Link>
 
             {/* Liens de navigation centraux (Desktop & Tablette) */}
-            <div className="hidden sm:flex items-center gap-5 text-xs md:text-sm font-medium text-hemora-muted">
+            <div className="hidden sm:flex items-center gap-5 text-xs md:text-sm font-medium text-hemora-muted px-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -75,8 +75,8 @@ export function StickyNavbar() {
               ))}
             </div>
 
-            {/* Bouton CTA Pilule Hemora */}
-            <div className="flex items-center pl-1 sm:pl-2 shrink-0">
+            {/* Bouton CTA Pilule Hemora (Courbure concentrique parfaite à 6px) */}
+            <div className="flex items-center shrink-0">
               <a
                 href="#eligibilite"
                 className="inline-flex items-center justify-center h-8 sm:h-9 px-3.5 sm:px-4 text-xs font-semibold text-white bg-hemora-red hover:bg-hemora-red-hover rounded-full transition-colors cursor-pointer shadow-xs whitespace-nowrap"
