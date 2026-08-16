@@ -56,9 +56,9 @@ export function WhyGiveSection() {
                 src="/images/why-give-editorial.webp"
                 alt="Flacons et éprouvettes minimalistes illustrant les composants du don de sang"
                 fill
-                priority
                 className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 64vw"
+                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 60vw, 750px"
+                quality={80}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>

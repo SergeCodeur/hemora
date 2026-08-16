@@ -222,7 +222,8 @@ export function ProcessSection() {
                     alt="Échange bienveillant pendant l'entretien"
                     fill
                     className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, 520px"
+                    sizes="(max-width: 640px) 92vw, 520px"
+                    quality={80}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white text-center">

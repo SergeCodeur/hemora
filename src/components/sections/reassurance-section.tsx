@@ -88,9 +88,9 @@ export function ReassuranceSection() {
               src="/images/reassurance-horizontal.webp"
               alt="Accueil chaleureux et serein dans un centre moderne de don de sang"
               fill
-              priority
               className="object-cover object-center transition-transform duration-700 group-hover:scale-102"
-              sizes="(max-width: 1280px) 100vw, 1380px"
+              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 92vw, 1200px"
+              quality={80}
             />
             {/* Dégradé sombre renforcé en bas (from-black/80 via-black/30) pour garantir une accessibilité et un contraste WCAG parfaits */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />

@@ -394,6 +394,7 @@ export function TestimonialsSection() {
                       fill
                       className={`object-cover object-[center_36%] ${isActive ? "grayscale-0" : "grayscale"}`}
                       sizes="120px"
+                      quality={80}
                     />
                     <div className={`absolute inset-0 bg-gradient-to-t from-black/80 to-transparent ${isActive ? "opacity-90" : "opacity-50"}`} />
                     <span className="absolute bottom-2 left-2 right-2 text-white text-[11px] font-semibold truncate text-left block">

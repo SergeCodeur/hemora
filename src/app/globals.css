@@ -20,16 +20,35 @@
   --foreground: #211D1D;
 }
 
+/* ========================================================================= */
+/* OPTIMISATIONS MOBILES & INTERACTION SANS LATENCE (0ms TAP DELAY)          */
+/* ========================================================================= */
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+input,
+select,
+textarea,
+[role="button"] {
+  touch-action: manipulation;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
 }
 
 /* ========================================================================= */
-/* SCROLLBAR GLOBALE SOFT, PRO & CLEAN (ÉLIMINE LE SCROLL BRUT DE WINDOWS)   */
+/* SCROLLBAR GLOBALE SOFT, PRO & CLEAN                                       */
 /* ========================================================================= */
 * {
   scrollbar-width: thin;
@@ -85,10 +104,18 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Texture de grain optimisée ultra-légère sans repaint continu */
-.bg-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
-  background-attachment: scroll;
+/* Texture de grain ultra-légère (réservée au desktop pour soulager 100% du GPU mobile) */
+@media (min-width: 1025px) {
+  .bg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 1024px) {
+  .bg-grain {
+    background-image: none !important;
+  }
 }
 
 /* Supprimer les flèches d'incrément/décrément par défaut des inputs de type number */

@@ -73,15 +73,14 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* COMPOSITION VISUELLE AVEC TEXTES ADAPTATIFS DESKTOP / MOBILE */}
+        {/* COMPOSITION VISUELLE RESPONSIVE ÉLÉGANTE (ZÉRO DUPLICATION DOM) */}
         <div className="pt-2">
-          {/* Desktop Layout : 3 colonnes avec découpes d'onglets et légendes sous l'image */}
-          <div className="hidden lg:grid grid-cols-12 gap-6 items-start">
+          <div className="grid grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4 lg:gap-6 items-start">
             
-            {/* VISUEL 1 : AVANT LE DON (Gauche) */}
-            <div className="col-span-3 -translate-y-[85px] space-y-3">
+            {/* VISUEL 1 : AVANT LE DON (Gauche sur Desktop, Bas-Gauche sur Mobile) */}
+            <div className="col-span-1 lg:col-span-3 order-2 lg:order-1 lg:-translate-y-[85px] space-y-2 lg:space-y-3">
               <div
-                className="group relative bg-hemora-bg aspect-3/4 shadow-xs"
+                className="group relative bg-hemora-bg aspect-3/4 rounded-xl lg:rounded-none overflow-hidden lg:overflow-visible border lg:border-none border-hemora-border shadow-xs"
                 style={{ clipPath: "url(#folder-tab-left)" }}
               >
                 <Image
@@ -89,11 +88,19 @@ export function HeroSection() {
                   alt="Premier entretien convivial avant le don de sang"
                   fill
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                  sizes="25vw"
+                  sizes="(max-width: 640px) 46vw, (max-width: 1024px) 45vw, 320px"
+                  quality={80}
                 />
+                {/* Légende interne sur mobile */}
+                <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-2.5 text-white">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/80 block">Étape 01</span>
+                  <p className="font-serif italic text-xs font-normal">
+                    Avant votre venue
+                  </p>
+                </div>
               </div>
               {/* Légende sous l'image uniquement sur Desktop */}
-              <div className="pt-1 space-y-0.5">
+              <div className="hidden lg:block pt-1 space-y-0.5">
                 <span className="text-[11px] font-mono font-medium uppercase tracking-wider text-hemora-red block">
                   Étape 01
                 </span>
@@ -103,8 +110,8 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* VISUEL 2 : EXPÉRIENCE PRINCIPALE (Centre, Dominant 4:3) */}
-            <div className="col-span-6 z-10">
+            {/* VISUEL 2 : EXPÉRIENCE PRINCIPALE (Haut sur Mobile, Centre 6 colonnes sur Desktop) */}
+            <div className="col-span-2 lg:col-span-6 order-1 lg:order-2 z-10">
               <div className="group relative rounded-2xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-4/3 shadow-sm">
                 <Image
                   src="/images/hero-main-donation.webp"
@@ -112,29 +119,30 @@ export function HeroSection() {
                   fill
                   priority
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-103"
-                  sizes="50vw"
+                  sizes="(max-width: 640px) 92vw, (max-width: 1024px) 90vw, 650px"
+                  quality={80}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5 text-white flex items-end justify-between">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 lg:from-black/55 via-black/10 to-transparent" />
+                <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5 text-white flex items-end justify-between">
                   <div>
                     <span className="text-xs font-mono uppercase tracking-widest text-hemora-soft-red block">
                       L'expérience Hemora
                     </span>
-                    <p className="font-serif text-lg sm:text-xl font-normal pt-0.5">
+                    <p className="font-serif text-base sm:text-lg lg:text-xl font-normal pt-0.5">
                       Accompagné à chaque étape
                     </p>
                   </div>
-                  <span className="text-xs text-white/80 font-sans border border-white/30 px-3 py-1 rounded-full backdrop-blur-xs">
+                  <span className="hidden sm:inline-block text-xs text-white/80 font-sans border border-white/30 px-3 py-1 rounded-full backdrop-blur-xs">
                     Sérénité & sécurité
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* VISUEL 3 : APRÈS LE DON (Droite) */}
-            <div className="col-span-3 -translate-y-[85px] space-y-3">
+            {/* VISUEL 3 : APRÈS LE DON (Droite sur Desktop, Bas-Droite sur Mobile) */}
+            <div className="col-span-1 lg:col-span-3 order-3 lg:order-3 lg:-translate-y-[85px] space-y-2 lg:space-y-3">
               <div
-                className="group relative bg-hemora-bg aspect-3/4 shadow-xs"
+                className="group relative bg-hemora-bg aspect-3/4 rounded-xl lg:rounded-none overflow-hidden lg:overflow-visible border lg:border-none border-hemora-border shadow-xs"
                 style={{ clipPath: "url(#folder-tab-right)" }}
               >
                 <Image
@@ -142,11 +150,19 @@ export function HeroSection() {
                   alt="Moment de détente et collation après le don de sang"
                   fill
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                  sizes="25vw"
+                  sizes="(max-width: 640px) 46vw, (max-width: 1024px) 45vw, 320px"
+                  quality={80}
                 />
+                {/* Légende interne sur mobile */}
+                <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-2.5 text-white">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/80 block">Après le don</span>
+                  <p className="font-serif italic text-xs font-normal leading-tight">
+                    « Plus simple que prévu »
+                  </p>
+                </div>
               </div>
               {/* Légende sous l'image uniquement sur Desktop */}
-              <div className="pt-1 space-y-0.5">
+              <div className="hidden lg:block pt-1 space-y-0.5">
                 <span className="text-[11px] font-mono font-medium uppercase tracking-wider text-hemora-red block">
                   Après le don
                 </span>
@@ -157,66 +173,6 @@ export function HeroSection() {
             </div>
 
           </div>
-
-          {/* Mobile & Tablette Layout (Textes à l'intérieur des images) */}
-          <div className="lg:hidden space-y-4">
-            <div className="relative rounded-2xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-4/3 shadow-xs">
-              <Image
-                src="/images/hero-main-donation.webp"
-                alt="Expérience de don de sang sereine et sécurisée"
-                fill
-                priority
-                className="object-cover object-center"
-                sizes="100vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="text-xs font-mono uppercase tracking-wider text-hemora-soft-red block">
-                  L'expérience Hemora
-                </span>
-                <p className="font-serif text-base font-normal">
-                  Accompagné à chaque étape
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div className="relative rounded-xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-3/4">
-                <Image
-                  src="/images/hero-before-donation.webp"
-                  alt="Entretien convivial"
-                  fill
-                  className="object-cover object-center"
-                  sizes="50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/80 block">Étape 01</span>
-                  <p className="font-serif italic text-xs font-normal">
-                    Avant votre venue
-                  </p>
-                </div>
-              </div>
-
-              <div className="relative rounded-xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-3/4">
-                <Image
-                  src="/images/hero-after-donation.webp"
-                  alt="Détente post-don"
-                  fill
-                  className="object-cover object-center"
-                  sizes="50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/80 block">Après le don</span>
-                  <p className="font-serif italic text-xs font-normal leading-tight">
-                    « Plus simple que prévu »
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
