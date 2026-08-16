@@ -197,7 +197,7 @@ export function CentersSection() {
 
             {/* Sélecteur de Pays Manuel & Élégant */}
             <div className="bg-white p-2.5 sm:p-3 rounded-2xl border border-hemora-border shadow-2xs shrink-0 self-stretch sm:self-start md:self-auto w-full sm:w-auto min-w-[210px] space-y-1">
-              <span className="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-stone-400 px-2">
+              <span className="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-stone-600 font-medium px-2">
                 Pays actif
               </span>
               <CustomSelect

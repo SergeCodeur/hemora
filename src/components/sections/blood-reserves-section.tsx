@@ -82,21 +82,21 @@ export function BloodReservesSection() {
         };
       case "high":
         return {
-          textColor: "text-[#B85D38] font-medium",
-          dotColor: "bg-[#B85D38]",
-          activeBarColor: "bg-[#B85D38]",
+          textColor: "text-[#9E4320] font-medium",
+          dotColor: "bg-[#9E4320]",
+          activeBarColor: "bg-[#9E4320]",
         };
       case "moderate":
         return {
-          textColor: "text-[#8C7355] font-normal",
-          dotColor: "bg-[#8C7355]",
-          activeBarColor: "bg-[#8C7355]",
+          textColor: "text-[#735634] font-normal",
+          dotColor: "bg-[#735634]",
+          activeBarColor: "bg-[#735634]",
         };
       case "stable":
         return {
           textColor: "text-hemora-muted font-normal",
-          dotColor: "bg-stone-400",
-          activeBarColor: "bg-stone-400",
+          dotColor: "bg-stone-500",
+          activeBarColor: "bg-stone-500",
         };
     }
   };
@@ -143,7 +143,7 @@ export function BloodReservesSection() {
 
             {/* Mention démonstration obligatoire */}
             <div className="pt-2">
-              <p className="text-xs text-stone-400 italic">
+              <p className="text-xs text-stone-600 italic">
                 Données locales de démonstration pour le Figma to Code Challenge.
               </p>
             </div>
@@ -202,6 +202,7 @@ export function BloodReservesSection() {
                         {/* Micro-jauge à 4 segments fins minimalistes */}
                         <div
                           className="flex items-center gap-1 w-14 sm:w-16"
+                          role="img"
                           aria-label={`${item.statusLabel} (${item.barsFilled} sur 4)`}
                         >
                           {[1, 2, 3, 4].map((barIndex) => {

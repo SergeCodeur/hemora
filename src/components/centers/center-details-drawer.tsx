@@ -146,7 +146,7 @@ export function CenterDetailsDrawer({
 
               {/* Coordonnées */}
               <div className="space-y-3">
-                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-stone-400">
+                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-stone-600">
                   Coordonnées & Localisation
                 </h3>
                 <div className="space-y-2.5 text-sm text-hemora-text">
@@ -178,10 +178,10 @@ export function CenterDetailsDrawer({
               {/* Horaires de la semaine */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-stone-400">
+                  <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-stone-600">
                     Horaires d’ouverture
                   </h3>
-                  <Clock className="w-3.5 h-3.5 text-stone-400" />
+                  <Clock className="w-3.5 h-3.5 text-stone-500" />
                 </div>
 
                 <div className="rounded-2xl border border-hemora-border divide-y divide-hemora-border/60 overflow-hidden bg-white text-xs sm:text-sm">
@@ -206,7 +206,7 @@ export function CenterDetailsDrawer({
                           )}
                         </div>
 
-                        <span className={schedule.isOpen ? "text-stone-700 font-mono" : "text-stone-400 italic"}>
+                        <span className={schedule.isOpen ? "text-stone-700 font-mono" : "text-stone-500 italic"}>
                           {schedule.isOpen && schedule.openTime && schedule.closeTime
                             ? `${schedule.openTime} à ${schedule.closeTime}`
                             : "Fermé"}
@@ -219,7 +219,7 @@ export function CenterDetailsDrawer({
 
               {/* Dons pris en charge */}
               <div className="space-y-3">
-                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-stone-400">
+                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-stone-600">
                   Dons pris en charge
                 </h3>
                 <div className="space-y-2">
@@ -244,7 +244,7 @@ export function CenterDetailsDrawer({
 
               {/* Modalités d'accueil */}
               <div className="space-y-2 text-xs">
-                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-stone-400">
+                <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-stone-600">
                   Modalité d’accueil
                 </h3>
                 <p className="text-hemora-text font-medium bg-white p-3 rounded-xl border border-hemora-border">

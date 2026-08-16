@@ -182,7 +182,7 @@ export function CustomSelect({
       >
         <div className="flex items-center gap-1.5 truncate">
           {labelPrefix && (
-            <span className="text-stone-400 text-xs font-normal shrink-0">
+            <span className="text-stone-600 text-xs font-medium shrink-0">
               {labelPrefix}
             </span>
           )}
@@ -195,7 +195,7 @@ export function CustomSelect({
         </div>
 
         <ChevronDown
-          className={`w-3.5 h-3.5 text-stone-400 shrink-0 transition-transform duration-200 group-hover:text-hemora-text ${
+          className={`w-3.5 h-3.5 text-stone-500 shrink-0 transition-transform duration-200 group-hover:text-hemora-text ${
             isOpen ? "rotate-180 text-hemora-red" : ""
           }`}
         />

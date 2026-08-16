@@ -84,9 +84,9 @@ export function Footer() {
           </p>
 
           {/* Mentions finales */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] sm:text-xs text-stone-400 shrink-0 font-medium">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] sm:text-xs text-stone-600 shrink-0 font-medium">
             <span>© 2026 Hemora</span>
-            <span aria-hidden="true" className="text-stone-300">·</span>
+            <span aria-hidden="true" className="text-stone-400">·</span>
             <span>Figma to Code Challenge (Édition 4)</span>
           </div>
         </div>

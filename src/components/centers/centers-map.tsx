@@ -114,32 +114,44 @@ export function CentersMap({
             className: "custom-user-pin",
             html: `
               <div style="
+                width: 48px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 position: relative;
-                width: 20px;
-                height: 20px;
-                background-color: #2563EB;
-                border: 3px solid #FFFFFF;
-                border-radius: 50%;
-                box-shadow: 0 0 14px rgba(37, 99, 235, 0.6);
               ">
+                <span class="sr-only">Votre position actuelle</span>
                 <div style="
-                  position: absolute;
-                  top: -6px;
-                  left: -6px;
-                  width: 32px;
-                  height: 32px;
+                  position: relative;
+                  width: 20px;
+                  height: 20px;
+                  background-color: #2563EB;
+                  border: 3px solid #FFFFFF;
                   border-radius: 50%;
-                  background-color: rgba(37, 99, 235, 0.25);
-                  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-                "></div>
+                  box-shadow: 0 0 14px rgba(37, 99, 235, 0.6);
+                ">
+                  <div style="
+                    position: absolute;
+                    top: -6px;
+                    left: -6px;
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    background-color: rgba(37, 99, 235, 0.25);
+                    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+                  "></div>
+                </div>
               </div>
             `,
-            iconSize: [20, 20],
-            iconAnchor: [10, 10],
+            iconSize: [48, 48],
+            iconAnchor: [24, 24],
           });
 
           const userMarker = L.marker([userCoords.latitude, userCoords.longitude], {
             icon: userIcon,
+            title: "Votre position détectée",
+            alt: "Votre position détectée",
             zIndexOffset: 1000,
           });
 
@@ -149,6 +161,12 @@ export function CentersMap({
           });
 
           markersLayer.addLayer(userMarker);
+
+          const userMarkerEl = userMarker.getElement();
+          if (userMarkerEl) {
+            userMarkerEl.setAttribute("aria-label", "Votre position actuelle");
+            userMarkerEl.setAttribute("role", "button");
+          }
         }
 
         // 2. Marqueurs des centres
@@ -162,29 +180,40 @@ export function CentersMap({
             className: `custom-center-pin-${center.id}`,
             html: `
               <div style="
-                width: ${isSelected ? "36px" : "28px"};
-                height: ${isSelected ? "36px" : "28px"};
-                background-color: ${isSelected ? "#A92F3D" : "#FFFFFF"};
-                border: 2px solid ${isSelected ? "#FFFFFF" : "#A92F3D"};
-                border-radius: 50%;
+                width: 48px;
+                height: 48px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-                transition: all 0.2s ease;
-                cursor: pointer;
               ">
-                <svg width="${isSelected ? "18" : "14"}" height="${isSelected ? "18" : "14"}" viewBox="0 0 24 24" fill="${isSelected ? "#FFFFFF" : "#A92F3D"}">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
+                <span class="sr-only">Centre de don : ${center.name}, ${center.city}</span>
+                <div style="
+                  width: ${isSelected ? "36px" : "28px"};
+                  height: ${isSelected ? "36px" : "28px"};
+                  background-color: ${isSelected ? "#A92F3D" : "#FFFFFF"};
+                  border: 2px solid ${isSelected ? "#FFFFFF" : "#A92F3D"};
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                  transition: all 0.2s ease;
+                  cursor: pointer;
+                ">
+                  <svg width="${isSelected ? "18" : "14"}" height="${isSelected ? "18" : "14"}" viewBox="0 0 24 24" fill="${isSelected ? "#FFFFFF" : "#A92F3D"}" aria-hidden="true">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </div>
               </div>
             `,
-            iconSize: [isSelected ? 36 : 28, isSelected ? 36 : 28],
-            iconAnchor: [isSelected ? 18 : 14, isSelected ? 18 : 14],
+            iconSize: [48, 48],
+            iconAnchor: [24, 24],
           });
 
           const marker = L.marker([center.latitude, center.longitude], {
             icon: centerIcon,
+            title: `${center.name} (${center.city})`,
+            alt: `${center.name} (${center.city})`,
             zIndexOffset: isSelected ? 900 : 100,
           });
 
@@ -198,6 +227,12 @@ export function CentersMap({
           });
 
           markersLayer.addLayer(marker);
+
+          const markerEl = marker.getElement();
+          if (markerEl) {
+            markerEl.setAttribute("aria-label", `Centre de don : ${center.name}, ${center.city}`);
+            markerEl.setAttribute("role", "button");
+          }
         });
 
         // 3. Recentrage automatique : centre sélectionné OU vue globale du pays / centres visibles

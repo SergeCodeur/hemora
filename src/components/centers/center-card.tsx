@@ -59,8 +59,8 @@ export function CenterCard({
             <span className="text-[11px] sm:text-xs font-mono font-medium text-hemora-muted uppercase tracking-wider">
               {center.city}
             </span>
-            <span className="text-stone-300">•</span>
-            <span className="text-[11px] sm:text-xs font-sans text-stone-500 truncate">
+            <span className="text-stone-400" aria-hidden="true">•</span>
+            <span className="text-[11px] sm:text-xs font-sans text-stone-600 truncate">
               {center.type}
             </span>
           </div>
@@ -80,7 +80,7 @@ export function CenterCard({
 
       {/* Adresse */}
       <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-hemora-muted">
-        <MapPin className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+        <MapPin className="w-3.5 h-3.5 text-stone-500 shrink-0" />
         <span className="truncate">{center.address}</span>
       </div>
 
@@ -93,7 +93,7 @@ export function CenterCard({
           aria-hidden="true"
         />
         <span className="font-medium text-hemora-text">{status.label}</span>
-        <span className="text-stone-300">•</span>
+        <span className="text-stone-400" aria-hidden="true">•</span>
         <span className="text-hemora-muted capitalize">{status.detail}</span>
       </div>
 

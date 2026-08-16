@@ -68,7 +68,7 @@ export function WhyGiveSection() {
               
               {/* COMPOSANT 1 : PLASMA */}
               <div className="space-y-2 border-t border-hemora-border/70 pt-4">
-                <span className="text-xs font-mono font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 inline-block">
+                <span className="text-xs font-mono font-semibold text-amber-800 bg-amber-50/90 px-2 py-0.5 rounded border border-amber-300/80 inline-block">
                   Plasma
                 </span>
                 <p className="text-sm text-hemora-muted leading-relaxed pt-1">
