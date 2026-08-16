@@ -1,7 +1,7 @@
-# Hemora — Donner commence par savoir
+# Hemora : Donner commence par savoir
 
 > **Landing page d'information, d'orientation et de sensibilisation au don de sang bénévole.**  
-> Projet réalisé dans le cadre du **Figma to Code Challenge — Édition 4**.
+> Projet réalisé dans le cadre du **Figma to Code Challenge (Édition 4)**.
 
 * **Site en production :** [https://hemora.sergeamoussougbo.com/](https://hemora.sergeamoussougbo.com/)  
 * **Documentation des prompts & démarche IA :** [PROMPTS.md](./PROMPTS.md)
@@ -74,7 +74,7 @@ Le projet s'articule autour du concept directeur **« Le Déclic »** : accompag
 * **Styling :** [Tailwind CSS v4](https://tailwindcss.com/) & CSS Vanilla avec tokens HSL
 * **Animations :** [Framer Motion](https://www.framer.com/motion/)
 * **Cartographie :** [Leaflet](https://leafletjs.com/) & [React-Leaflet](https://react-leaflet.js.org/)
-* **Typographies :** Google Fonts — *Figtree* (Sans-serif) & *Newsreader* (Serif éditorial)
+* **Typographies :** Google Fonts : *Figtree* (Sans-serif) & *Newsreader* (Serif éditorial)
 * **Icônes :** [Lucide React](https://lucide.dev/)
 * **Package Manager :** `pnpm`
 
@@ -141,10 +141,10 @@ noble-fermi/
 │   │   └── sitemap.ts           # Route handler Next.js pour /sitemap.xml
 │   ├── components/
 │   │   ├── centers/             # Composants Carte Leaflet, Card & Drawer
-│   │   ├── layout/              # Header, Footer, Container
+│   │   ├── layout/              # Header, StickyNavbar, Footer, Container
 │   │   ├── sections/            # Hero, Reassurance, WhyGive, Eligibility,
 │   │   │                        # Process, Testimonials, Reserves, Centers, FAQ, FinalCTA
-│   │   └── ui/                  # CustomSelect accessible, Button, Badges
+│   │   └── ui/                  # CustomSelect accessible, Button, Badges, SmoothScroll
 │   ├── data/
 │   │   └── centers-data.ts      # 45 centres de don (BJ, TG, CI, SN, FR)
 │   ├── hooks/
@@ -161,5 +161,5 @@ noble-fermi/
 ## Challenge & Crédits
 
 * **Auteur :** Serge Codeur ([amoussougboserge@gmail.com](mailto:amoussougboserge@gmail.com))
-* **Challenge :** Figma to Code Challenge — Édition 4
+* **Challenge :** Figma to Code Challenge (Édition 4)
 * **Licence :** MIT

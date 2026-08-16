@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
+import { smoothScrollTo } from "../ui/smooth-scroll";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
@@ -20,14 +21,7 @@ export function Header() {
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-    }
+    smoothScrollTo(href);
   };
 
   // Empêche le défilement d'arrière-plan quand le menu mobile est ouvert

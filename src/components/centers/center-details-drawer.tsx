@@ -208,7 +208,7 @@ export function CenterDetailsDrawer({
 
                         <span className={schedule.isOpen ? "text-stone-700 font-mono" : "text-stone-400 italic"}>
                           {schedule.isOpen && schedule.openTime && schedule.closeTime
-                            ? `${schedule.openTime} — ${schedule.closeTime}`
+                            ? `${schedule.openTime} à ${schedule.closeTime}`
                             : "Fermé"}
                         </span>
                       </div>

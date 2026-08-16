@@ -69,7 +69,7 @@ export function HeroSection() {
           {/* Desktop Layout : 3 colonnes avec découpes d'onglets et légendes sous l'image */}
           <div className="hidden lg:grid grid-cols-12 gap-6 items-start">
             
-            {/* VISUEL 1 — AVANT LE DON (Gauche) */}
+            {/* VISUEL 1 : AVANT LE DON (Gauche) */}
             <div className="col-span-3 -translate-y-[85px] space-y-3">
               <div
                 className="group relative bg-hemora-bg aspect-3/4 shadow-xs"
@@ -94,7 +94,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* VISUEL 2 — EXPÉRIENCE PRINCIPALE (Centre, Dominant 4:3) */}
+            {/* VISUEL 2 : EXPÉRIENCE PRINCIPALE (Centre, Dominant 4:3) */}
             <div className="col-span-6 z-10">
               <div className="group relative rounded-2xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-4/3 shadow-sm">
                 <Image
@@ -122,7 +122,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* VISUEL 3 — APRÈS LE DON (Droite) */}
+            {/* VISUEL 3 : APRÈS LE DON (Droite) */}
             <div className="col-span-3 -translate-y-[85px] space-y-3">
               <div
                 className="group relative bg-hemora-bg aspect-3/4 shadow-xs"

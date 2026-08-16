@@ -27,64 +27,54 @@ const siteUrl = "https://hemora.sergeamoussougbo.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Hemora — Donner commence par savoir",
+    default: "Hemora : Donner commence par savoir",
     template: "%s | Hemora",
   },
   description:
-    "Plateforme d'information et d'orientation au don de sang. Évaluez votre éligibilité en 2 minutes, découvrez le déroulement du don et localisez les centres de collecte les plus proches.",
+    "Hemora est une plateforme d'information, d'orientation et de réassurance dédiée au don de sang bénévole. Vérifiez votre éligibilité, comprenez le parcours de prélèvement et localisez les centres de don ouverts près de chez vous.",
   keywords: [
     "don de sang",
-    "Hemora",
-    "don de plasma",
-    "don de plaquettes",
-    "centre de don de sang",
-    "éligibilité don de sang",
-    "banque de sang",
-    "santé publique",
     "donner son sang",
-    "transfusion sanguine",
+    "éligibilité don de sang",
+    "centres de don de sang",
+    "réserves sanguines",
+    "sensibilisation don de sang",
+    "santé publique",
+    "Hemora",
   ],
   authors: [{ name: "Hemora" }],
   creator: "Hemora",
   publisher: "Hemora",
-  applicationName: "Hemora",
-  alternates: {
-    canonical: siteUrl,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+  alternates: {
+    canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: siteUrl,
     siteName: "Hemora",
-    title: "Hemora — Donner commence par savoir",
+    title: "Hemora : Donner commence par savoir",
     description:
-      "Vérifiez votre éligibilité au don de sang, découvrez le déroulement étape par étape et trouvez un centre de collecte près de chez vous.",
+      "Informations claires, vérification d'éligibilité en 2 minutes et localisation des centres de don de sang ouverts près de chez vous.",
     images: [
       {
         url: "/images/hero-main-donation.webp",
         width: 1400,
         height: 1050,
-        alt: "Hemora — Expérience sereine et sécurisée de don de sang",
-        type: "image/webp",
+        alt: "Hemora : Expérience sereine et sécurisée de don de sang",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hemora — Donner commence par savoir",
+    title: "Hemora : Donner commence par savoir",
     description:
-      "Vérifiez votre éligibilité au don de sang, découvrez le déroulement étape par étape et trouvez un centre près de chez vous.",
+      "Plateforme d'orientation, d'éligibilité et de sensibilisation au don de sang bénévole.",
     images: ["/images/hero-main-donation.webp"],
     creator: "@hemora",
   },

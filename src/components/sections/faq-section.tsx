@@ -67,7 +67,7 @@ export function FAQSection() {
       aria-labelledby="faq-title"
     >
       <Container size="default">
-        <div className="max-w-3xl mx-auto space-y-12 sm:space-y-16">
+        <div className="max-w-3xl lg:max-w-[780px] mx-auto space-y-12 sm:space-y-16">
           
           {/* ========================================================================= */}
           {/* EN-TÊTE ÉDITORIAL CENTRÉ                                                 */}

@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { smoothScrollTo } from "../ui/smooth-scroll";
+
 export function StickyNavbar() {
   const [isVisible, setIsVisible] = React.useState(false);
   const lastScrollYRef = React.useRef(0);
@@ -45,14 +47,7 @@ export function StickyNavbar() {
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-    }
+    smoothScrollTo(href);
   };
 
   return (

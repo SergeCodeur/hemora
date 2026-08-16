@@ -1,8 +1,8 @@
-# PROMPTS.md — Hemora
+# PROMPTS.md : Hemora
 
 ## 1. À propos de ce document
 
-Ce document retrace l’utilisation de l’intelligence artificielle pendant la conception et le développement de Hemora dans le cadre du Figma to Code Challenge — Édition 4.
+Ce document retrace l’utilisation de l’intelligence artificielle pendant la conception et le développement de Hemora dans le cadre du Figma to Code Challenge (Édition 4).
 
 L’objectif n’est pas de reproduire l’intégralité des échanges avec les différents outils, mais de documenter les prompts et décisions qui ont réellement influencé le projet.
 
@@ -152,7 +152,7 @@ Cette approche itérative constitue une partie importante de ma manière d’uti
 
 ## 5. Séquence de prompts significatifs
 
-### P01 — Refonte du Header et du Hero en triptyque éditorial
+### P01 : Refonte du Header et du Hero en triptyque éditorial
 
 **Objectif**
 
@@ -180,7 +180,7 @@ Le Hero donne immédiatement le ton éditorial, chaleureux et haut de gamme de l
 
 ---
 
-### P02 — Section Réassurance : 3 piliers éditoriaux et panorama 21:9
+### P02 : Section Réassurance : 3 piliers éditoriaux et panorama 21:9
 
 **Objectif**
 
@@ -205,7 +205,7 @@ Une respiration visuelle forte qui rassure immédiatement le primo-donneur sans 
 
 ---
 
-### P03 — Section “Pourquoi donner” : Vulgarisation et dé-médicalisation
+### P03 : Section “Pourquoi donner” : Vulgarisation et dé-médicalisation
 
 **Objectif**
 
@@ -230,7 +230,7 @@ Une explication limpide et accessible à tous, montrant la démultiplication de 
 
 ---
 
-### P04 — Simulateur d’éligibilité : Évaluation par étapes et logique physiologique
+### P04 : Simulateur d’éligibilité : Évaluation par étapes et logique physiologique
 
 **Objectif**
 
@@ -256,7 +256,7 @@ L'une des pièces maîtresses de la plateforme : un outil interactif, utile, pr�
 
 ---
 
-### P05 — Suppression du vert d’alerte dans le simulateur
+### P05 : Suppression du vert d’alerte dans le simulateur
 
 **Objectif**
 
@@ -280,7 +280,7 @@ Le simulateur reste parfaitement intégré à l'univers visuel chaleureux et éd
 
 ---
 
-### P06 — Section Déroulement : Timeline verticale centrale équilibrée
+### P06 : Section Déroulement : Timeline verticale centrale équilibrée
 
 **Objectif**
 
@@ -306,7 +306,7 @@ Une visualisation claire et chronométrée qui lève toutes les interrogations s
 
 ---
 
-### P07 — Carousel de témoignages : Ruban continu et récits immersifs
+### P07 : Carousel de témoignages : Ruban continu et récits immersifs
 
 **Objectif**
 
@@ -333,7 +333,7 @@ Une des sections les plus immersives et engageantes de la landing page, créant 
 
 ---
 
-### P08 — Harmonisation du rythme : Centrage de la section FAQ
+### P08 : Harmonisation du rythme : Centrage de la section FAQ
 
 **Objectif**
 
@@ -359,7 +359,7 @@ Un rythme de lecture aéré et une levée méthodique des dernières objections 
 
 ---
 
-### P09 — Refonte des réserves sanguines : Visualisation continue sans cartes dashboard
+### P09 : Refonte des réserves sanguines : Visualisation continue sans cartes dashboard
 
 **Objectif**
 
@@ -385,7 +385,7 @@ Une présentation de données élégante et digne, fidèle à l'esprit éditoria
 
 ---
 
-### P10 — Répertoire des centres : Moteur interactif local et carte Leaflet
+### P10 : Répertoire des centres : Moteur interactif local et carte Leaflet
 
 **Objectif**
 
@@ -411,7 +411,7 @@ Un outil de recherche de centres complet, interactif et directement actionnable.
 
 ---
 
-### P11 — Évolution vers une expérience multi-pays et Reverse Geocoding
+### P11 : Évolution vers une expérience multi-pays et Reverse Geocoding
 
 **Objectif**
 
@@ -439,7 +439,7 @@ Une crédibilité totale et une expérience localisée intelligente pour les uti
 
 ---
 
-### P12 — Élimination des composants natifs OS : Création de `CustomSelect`
+### P12 : Élimination des composants natifs OS : Création de `CustomSelect`
 
 **Objectif**
 
@@ -466,7 +466,7 @@ Une finition graphique impeccable et une harmonie totale jusqu'au moindre compos
 
 ---
 
-### P13 — Optimisation ergonomique et responsive mobile (320px–390px)
+### P13 : Optimisation ergonomique et responsive mobile (320px–390px)
 
 **Objectif**
 
@@ -493,7 +493,7 @@ Une expérience mobile irréprochable, compacte et sans rupture visuelle dès 32
 
 ---
 
-### P14 — Audit global, Wording bienveillant et Sémantique d'ancres
+### P14 : Audit global, Wording bienveillant et Sémantique d'ancres
 
 **Objectif**
 
@@ -518,7 +518,7 @@ Un niveau de finition et de rigueur exemplaire tant sur le fond éditorial que s
 
 ---
 
-### P15 — Optimisation WebP des 14 photographies (-91,8% de payload)
+### P15 : Optimisation WebP des 14 photographies (-91,8% de payload)
 
 **Objectif**
 
@@ -544,7 +544,7 @@ Performances de chargement ultra-rapides et score de performance optimal pour le
 
 ---
 
-### P16 — Configuration SEO de production, JSON-LD, Sitemap et Robots
+### P16 : Configuration SEO de production, JSON-LD, Sitemap et Robots
 
 **Objectif**
 
