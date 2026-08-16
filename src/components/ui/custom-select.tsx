@@ -132,7 +132,7 @@ export function CustomSelect({
               ref={listboxRef}
               role="listbox"
               tabIndex={-1}
-              className="max-h-60 overflow-y-auto overflow-x-hidden divide-y divide-stone-100/80 focus:outline-none"
+              className="max-h-60 overflow-y-auto overflow-x-hidden divide-y divide-stone-100/80 focus:outline-none custom-scrollbar"
             >
               {options.map((option) => {
                 const isSelected = option.value === value;

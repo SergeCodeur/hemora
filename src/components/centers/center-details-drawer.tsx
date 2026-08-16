@@ -81,7 +81,7 @@ export function CenterDetailsDrawer({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="relative w-full max-w-lg bg-white h-full shadow-2xl flex flex-col justify-between overflow-y-auto z-10"
+            className="relative w-full max-w-lg bg-white h-full shadow-2xl flex flex-col justify-between overflow-y-auto z-10 custom-scrollbar"
           >
             {/* Header du Drawer */}
             <div className="p-6 sm:p-8 border-b border-hemora-border/70 sticky top-0 bg-white/95 backdrop-blur-md z-20 flex items-start justify-between gap-4">

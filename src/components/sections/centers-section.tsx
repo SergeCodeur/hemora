@@ -425,7 +425,7 @@ export function CentersSection() {
               }`}
             >
               {filteredCenters.length > 0 ? (
-                <div className="space-y-3.5 max-h-[640px] overflow-y-auto pr-1">
+                <div className="space-y-3.5 max-h-[640px] overflow-y-auto pr-2 custom-scrollbar">
                   {filteredCenters.map((center) => (
                     <CenterCard
                       key={center.id}
