@@ -76,7 +76,7 @@ export function HeroSection() {
                 style={{ clipPath: "url(#folder-tab-left)" }}
               >
                 <Image
-                  src="/images/hero-before-donation.jpg"
+                  src="/images/hero-before-donation.webp"
                   alt="Premier entretien convivial avant le don de sang"
                   fill
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
@@ -98,7 +98,7 @@ export function HeroSection() {
             <div className="col-span-6 z-10">
               <div className="group relative rounded-2xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-4/3 shadow-sm">
                 <Image
-                  src="/images/hero-main-donation.jpg"
+                  src="/images/hero-main-donation.webp"
                   alt="Expérience de don de sang sereine et sécurisée"
                   fill
                   priority
@@ -129,7 +129,7 @@ export function HeroSection() {
                 style={{ clipPath: "url(#folder-tab-right)" }}
               >
                 <Image
-                  src="/images/hero-after-donation.jpg"
+                  src="/images/hero-after-donation.webp"
                   alt="Moment de détente et collation après le don de sang"
                   fill
                   className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
@@ -153,7 +153,7 @@ export function HeroSection() {
           <div className="lg:hidden space-y-4">
             <div className="relative rounded-2xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-4/3 shadow-xs">
               <Image
-                src="/images/hero-main-donation.jpg"
+                src="/images/hero-main-donation.webp"
                 alt="Expérience de don de sang sereine et sécurisée"
                 fill
                 priority
@@ -174,7 +174,7 @@ export function HeroSection() {
             <div className="grid grid-cols-2 gap-3">
               <div className="relative rounded-xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-3/4">
                 <Image
-                  src="/images/hero-before-donation.jpg"
+                  src="/images/hero-before-donation.webp"
                   alt="Entretien convivial"
                   fill
                   className="object-cover object-center"
@@ -191,7 +191,7 @@ export function HeroSection() {
 
               <div className="relative rounded-xl overflow-hidden border border-hemora-border bg-hemora-bg aspect-3/4">
                 <Image
-                  src="/images/hero-after-donation.jpg"
+                  src="/images/hero-after-donation.webp"
                   alt="Détente post-don"
                   fill
                   className="object-cover object-center"

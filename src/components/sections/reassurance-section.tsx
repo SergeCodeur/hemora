@@ -85,7 +85,7 @@ export function ReassuranceSection() {
         <div className="pt-4">
           <div className="group relative rounded-3xl overflow-hidden border border-hemora-border/80 bg-white aspect-16/9 sm:aspect-21/9 shadow-xs transition-transform duration-500 hover:scale-[1.005]">
             <Image
-              src="/images/reassurance-horizontal.jpg"
+              src="/images/reassurance-horizontal.webp"
               alt="Accueil chaleureux et serein dans un centre moderne de don de sang"
               fill
               priority

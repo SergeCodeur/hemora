@@ -53,7 +53,7 @@ export function WhyGiveSection() {
             {/* L'image de séparation */}
             <div className="relative rounded-3xl overflow-hidden border border-hemora-border/80 bg-white aspect-3/2 shadow-xs transition-transform duration-500 hover:scale-[1.005]">
               <Image
-                src="/images/why-give-editorial.jpg"
+                src="/images/why-give-editorial.webp"
                 alt="Flacons et éprouvettes minimalistes illustrant les composants du don de sang"
                 fill
                 priority

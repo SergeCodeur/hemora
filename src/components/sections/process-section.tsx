@@ -157,7 +157,7 @@ export function ProcessSection() {
               <div className="relative z-10 max-w-lg w-full rounded-3xl overflow-hidden border border-hemora-border bg-white shadow-xs">
                 <div className="relative aspect-16/10 w-full">
                   <Image
-                    src="/images/process-editorial.jpg"
+                    src="/images/process-editorial.webp"
                     alt="Échange bienveillant pendant l'entretien"
                     fill
                     className="object-cover object-center"

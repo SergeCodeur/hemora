@@ -20,7 +20,7 @@ const testimonials: Testimonial[] = [
     id: "aicha",
     name: "Aïcha",
     badge: "Premier don",
-    image: "/images/testimonial-aicha.jpg",
+    image: "/images/testimonial-aicha.webp",
     worry: "J’avais surtout peur de l’aiguille.",
     feedback:
       "Finalement, le prélèvement a été beaucoup plus rapide et moins impressionnant que je l’imaginais.",
@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
     id: "samuel",
     name: "Samuel",
     badge: "Premier don",
-    image: "/images/testimonial-samuel.jpg",
+    image: "/images/testimonial-samuel.webp",
     worry: "Je ne savais pas vraiment comment ça allait se passer.",
     feedback:
       "L’équipe m’a expliqué chaque étape et je me suis senti accompagné du début à la fin.",
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     id: "nadia",
     name: "Nadia",
     badge: "Premier don",
-    image: "/images/testimonial-nadia.jpg",
+    image: "/images/testimonial-nadia.webp",
     worry: "Je pensais qu’il fallait connaître son groupe sanguin.",
     feedback:
       "On m’a rassurée dès l’accueil et tout a été beaucoup plus simple que prévu.",
@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
     id: "idriss",
     name: "Idriss",
     badge: "Premier don",
-    image: "/images/testimonial-idriss.jpg",
+    image: "/images/testimonial-idriss.webp",
     worry: "J’avais peur de me sentir mal après.",
     feedback:
       "J’ai pris quelques minutes pour récupérer, boire et manger avant de repartir tranquillement.",
@@ -56,7 +56,7 @@ const testimonials: Testimonial[] = [
     id: "salimata",
     name: "Salimata",
     badge: "Premier don",
-    image: "/images/testimonial-salimata.jpg",
+    image: "/images/testimonial-salimata.webp",
     worry: "Je pensais que ça prendrait toute la matinée.",
     feedback:
       "Tout le parcours était parfaitement fluide. En 45 minutes chrono, c'était terminé et j'étais déjà prête à reprendre mes activités.",
@@ -65,7 +65,7 @@ const testimonials: Testimonial[] = [
     id: "emmanuel",
     name: "Emmanuel",
     badge: "Premier don",
-    image: "/images/testimonial-emmanuel.jpg",
+    image: "/images/testimonial-emmanuel.webp",
     worry: "J'avais peur d'avoir un vertige après le don.",
     feedback:
       "Le médecin m'a rassuré dès l'entretien initial et l'équipe veille sur vous pendant la pause collation. Zéro malaise.",
@@ -74,7 +74,7 @@ const testimonials: Testimonial[] = [
     id: "kader",
     name: "Kader",
     badge: "Premier don",
-    image: "/images/testimonial-kader.jpg",
+    image: "/images/testimonial-kader.webp",
     worry: "J'hésitais à venir seul pour une première fois.",
     feedback:
       "Les soignants et les autres donneurs étaient tellement chaleureux que je me suis immédiatement senti à l'aise.",
@@ -83,7 +83,7 @@ const testimonials: Testimonial[] = [
     id: "fatou",
     name: "Fatou",
     badge: "Premier don",
-    image: "/images/testimonial-fatou.jpg",
+    image: "/images/testimonial-fatou.webp",
     worry: "Je craignais de ne pas peser assez lourd.",
     feedback:
       "Le médecin a vérifié mes critères en toute bienveillance lors de l'entretien préalable et tout s'est parfaitement déroulé.",
