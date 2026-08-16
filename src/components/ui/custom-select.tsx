@@ -172,7 +172,7 @@ export function CustomSelect({
         />
       </button>
 
-      {/* Menu déroulant avec marges internes aérées et accessibilité clavier */}
+      {/* Menu déroulant avec marges internes aérées et alignement parfait */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -180,8 +180,10 @@ export function CustomSelect({
             animate={{ opacity: 1, y: 4, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.98 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className={`absolute left-0 z-50 mt-1 min-w-[210px] max-w-[300px] bg-white rounded-2xl border border-hemora-border shadow-xl overflow-hidden p-1.5 backdrop-blur-md ${
-              variant === "country" ? "w-full min-w-[230px]" : ""
+            className={`absolute left-0 z-50 mt-1 bg-white rounded-2xl border border-hemora-border shadow-xl overflow-hidden p-1.5 backdrop-blur-md ${
+              variant === "country"
+                ? "w-full min-w-full left-0 right-0"
+                : "min-w-[200px] max-w-[280px]"
             }`}
           >
             <ul

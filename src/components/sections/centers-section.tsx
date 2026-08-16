@@ -196,13 +196,14 @@ export function CentersSection() {
             </div>
 
             {/* Sélecteur de Pays Manuel & Élégant */}
-            <div className="bg-white p-2 sm:p-2.5 rounded-2xl border border-hemora-border shadow-2xs shrink-0 self-start md:self-auto w-full sm:w-auto min-w-[200px] flex items-center justify-between sm:block space-y-0.5 sm:space-y-1">
-              <span className="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-stone-400 px-1 sm:px-2">
+            <div className="bg-white p-2.5 sm:p-3 rounded-2xl border border-hemora-border shadow-2xs shrink-0 self-stretch sm:self-start md:self-auto w-full sm:w-auto min-w-[210px] space-y-1">
+              <span className="block text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-stone-400 px-2">
                 Pays actif
               </span>
               <CustomSelect
                 id="country-select"
                 variant="country"
+                className="w-full"
                 options={COUNTRIES.map((c) => ({
                   value: c.code,
                   label: `${c.flag} ${c.name}`,
