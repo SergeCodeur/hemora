@@ -200,10 +200,24 @@ export function CentersMap({
           markersLayer.addLayer(marker);
         });
 
-        // 3. Recentrage ciblé
+        // 3. Recentrage automatique : centre sélectionné OU vue globale du pays / centres visibles
         if (selectedCenter) {
           map.flyTo([selectedCenter.latitude, selectedCenter.longitude], 14, {
             duration: 1.2,
+          });
+        } else if (bounds.length > 0) {
+          // Si tous les centres ou un sous-ensemble sont visibles sans sélection, ajuster la vue
+          if (bounds.length === 1) {
+            map.flyTo(bounds[0], 13, { duration: 1.0 });
+          } else {
+            map.fitBounds(bounds, {
+              padding: [45, 45],
+              maxZoom: 12,
+            });
+          }
+        } else {
+          map.flyTo(countryConfig.defaultCenter, countryConfig.defaultZoom, {
+            duration: 1.0,
           });
         }
       } catch (err) {
@@ -212,7 +226,7 @@ export function CentersMap({
     }
 
     updateMarkers();
-  }, [centers, selectedCenter, userCoords, isMapReady, onSelectCenter]);
+  }, [centers, selectedCenter, userCoords, countryConfig, isMapReady, onSelectCenter]);
 
   if (hasError) {
     return (

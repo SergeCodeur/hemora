@@ -142,6 +142,7 @@ export function CentersSection() {
       onlyOpenNow: false,
       appointmentMode: "all",
     });
+    setSelectedCenter(null);
     resetLocation();
   };
 
