@@ -87,6 +87,13 @@ export const metadata: Metadata = {
     images: ["/images/hero-main-donation.webp"],
     creator: "@hemora",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   category: "Health & Medical",
 };
 
