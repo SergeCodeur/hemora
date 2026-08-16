@@ -67,45 +67,30 @@ export function FAQSection() {
       aria-labelledby="faq-title"
     >
       <Container size="default">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="max-w-3xl mx-auto space-y-12 sm:space-y-16">
           
           {/* ========================================================================= */}
-          {/* COLONNE GAUCHE (ÉDITORIALE & STICKY SUR DESKTOP)                         */}
+          {/* EN-TÊTE ÉDITORIAL CENTRÉ                                                 */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-12">
-            
-            {/* Titre & intro */}
-            <div className="space-y-4">
-              <span className="text-xs font-mono font-semibold uppercase tracking-widest text-hemora-red block">
-                Foire aux questions
-              </span>
-              <h2
-                id="faq-title"
-                className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-hemora-text tracking-tight leading-[1.12]"
-              >
-                Vous avez encore une hésitation ?
-              </h2>
-              <p className="text-hemora-muted text-base sm:text-lg leading-relaxed pt-1">
-                Les réponses aux questions qu’on se pose souvent avant de donner.
-              </p>
-            </div>
-
-            {/* Note discrète pour situation spécifique (Desktop) */}
-            <div className="hidden lg:block pt-8 border-t border-hemora-border/70 space-y-1.5">
-              <p className="text-sm font-semibold text-hemora-text">
-                Une question plus spécifique ?
-              </p>
-              <p className="text-sm text-hemora-muted leading-relaxed">
-                Certaines situations nécessitent l’avis d’un professionnel de santé.
-              </p>
-            </div>
-
+          <div className="text-center space-y-4">
+            <span className="text-xs font-mono font-semibold uppercase tracking-widest text-hemora-red block">
+              Foire aux questions
+            </span>
+            <h2
+              id="faq-title"
+              className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-hemora-text tracking-tight leading-[1.12]"
+            >
+              Vous avez encore une hésitation ?
+            </h2>
+            <p className="text-hemora-muted text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-xl mx-auto pt-1">
+              Les réponses aux questions qu’on se pose souvent avant de donner.
+            </p>
           </div>
 
           {/* ========================================================================= */}
-          {/* COLONNE DROITE (ACCORDÉON FAQ LINÉAIRE ÉPURÉ)                            */}
+          {/* ACCORDÉON FAQ CENTRÉ ÉPURÉ (COLONNE UNIQUE)                              */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-7 space-y-3">
+          <div className="space-y-3">
             {faqs.map((faq, idx) => {
               const isOpen = openIndex === idx;
               const contentId = `faq-answer-${idx}`;
@@ -172,17 +157,18 @@ export function FAQSection() {
                 </div>
               );
             })}
+          </div>
 
-            {/* Note discrète pour situation spécifique (Mobile uniquement) */}
-            <div className="lg:hidden pt-8 mt-6 border-t border-hemora-border/70 space-y-1.5 text-center sm:text-left">
-              <p className="text-sm font-semibold text-hemora-text">
-                Une question plus spécifique ?
-              </p>
-              <p className="text-sm text-hemora-muted leading-relaxed">
-                Certaines situations nécessitent l’avis d’un professionnel de santé.
-              </p>
-            </div>
-
+          {/* ========================================================================= */}
+          {/* NOTE DE SITUATION SPÉCIFIQUE CENTRÉE                                      */}
+          {/* ========================================================================= */}
+          <div className="pt-6 border-t border-hemora-border/70 text-center space-y-1.5 max-w-lg mx-auto">
+            <p className="text-sm sm:text-base font-semibold text-hemora-text">
+              Une question plus spécifique ?
+            </p>
+            <p className="text-sm text-hemora-muted leading-relaxed">
+              Certaines situations nécessitent l’avis d’un professionnel de santé.
+            </p>
           </div>
 
         </div>
