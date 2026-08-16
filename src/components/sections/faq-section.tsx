@@ -145,10 +145,13 @@ export function FAQSection() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
+                        transition={{
+                          height: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
+                          opacity: { duration: 0.12, ease: "easeOut" },
+                        }}
                         className="overflow-hidden"
                       >
-                        <div className="px-5 sm:px-7 pb-6 pt-1 text-sm sm:text-base text-hemora-muted leading-relaxed border-t border-hemora-border/40">
+                        <div className="px-5 sm:px-7 pb-5 pt-1 text-sm sm:text-base text-hemora-muted leading-relaxed border-t border-hemora-border/40">
                           {faq.answer}
                         </div>
                       </motion.div>
