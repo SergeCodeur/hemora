@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../layout/container";
 import { Button } from "../ui/button";
 import { CustomSelect } from "../ui/custom-select";
@@ -258,15 +259,24 @@ export function EligibilitySection() {
             </p>
           </div>
 
-          {/* ESPACE FORMULAIRE / INTERACTIF SOBRE */}
-          <div 
-            className="border border-hemora-border rounded-3xl p-6 sm:p-10 md:p-12 bg-hemora-bg bg-grain min-h-[300px] flex flex-col justify-center transition-all duration-300 relative overflow-visible"
+          {/* ESPACE FORMULAIRE / INTERACTIF SOBRE AVEC REDIMENSIONNEMENT FLUIDE EN HAUTEUR */}
+          <motion.div 
+            layout
+            transition={{ layout: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
+            className="border border-hemora-border rounded-3xl p-6 sm:p-10 md:p-12 bg-hemora-bg bg-grain min-h-[300px] flex flex-col justify-center relative overflow-visible shadow-2xs"
             aria-live="polite"
           >
-            
-            {/* ÉTAPE D'ACCUEIL : AFFICHAGE DES CRITÈRES GENERAUX */}
-            {currentStep === "intro" && (
-              <div className="space-y-8 animate-in fade-in duration-300">
+            <AnimatePresence mode="wait" initial={false}>
+              {/* ÉTAPE D'ACCUEIL : AFFICHAGE DES CRITÈRES GENERAUX */}
+              {currentStep === "intro" && (
+                <motion.div
+                  key="intro"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.22, ease: "easeOut" }}
+                  className="space-y-8"
+                >
                 {/* Ligne des 3 critères épurés en deux lignes uniformes et avec paddings symétriques sur mobile */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-hemora-border/80">
                   
@@ -311,12 +321,19 @@ export function EligibilitySection() {
                     Vérifier mon éligibilité
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* ÉTAPE DE QUESTIONNAIRE INTERACTIF */}
             {currentStep !== "intro" && currentStep !== "result" && (
-              <div className="space-y-6 animate-in slide-in-from-right-4 duration-300">
+              <motion.div
+                key={currentStep}
+                initial={{ opacity: 0, x: 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -12 }}
+                transition={{ duration: 0.22, ease: "easeOut" }}
+                className="space-y-6"
+              >
                 {/* Barre de progression fine et discrète */}
                 <div className="w-full h-1 bg-hemora-border rounded-full overflow-hidden mb-2">
                   <div 
@@ -546,13 +563,19 @@ export function EligibilitySection() {
                     {error}
                   </p>
                 )}
-              </div>
+              </motion.div>
             )}
 
             {/* ÉTAPE 3 : AFFICHAGE DU RÉSULTAT */}
             {currentStep === "result" && (
-              <div className="space-y-8 animate-in zoom-in-95 duration-300">
-                
+              <motion.div
+                key="result"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="space-y-8"
+              >
                 {/* 1. ÉLIGIBLE */}
                 {resultType === "eligible" && (
                   <div className="space-y-6 text-center sm:text-left animate-in fade-in duration-300">
@@ -663,10 +686,10 @@ export function EligibilitySection() {
                   </div>
                 )}
 
-              </div>
+              </motion.div>
             )}
-
-          </div>
+          </AnimatePresence>
+        </motion.div>
 
           {/* INFORMATION MÉDICALE BIENVEILLANTE */}
           <div className="p-5 rounded-2xl border border-hemora-border/60 bg-stone-50/60 text-center max-w-xl mx-auto">
