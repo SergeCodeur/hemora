@@ -78,11 +78,8 @@ export function HeroSection() {
           <div className="grid grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4 lg:gap-6 items-start">
             
             {/* VISUEL 1 : AVANT LE DON (Gauche sur Desktop, Bas-Gauche sur Mobile) */}
-            <div className="col-span-1 lg:col-span-3 order-2 lg:order-1 lg:-translate-y-[85px] space-y-2 lg:space-y-3">
-              <div
-                className="group relative bg-hemora-bg aspect-3/4 rounded-xl lg:rounded-none overflow-hidden lg:overflow-visible border lg:border-none border-hemora-border shadow-xs"
-                style={{ clipPath: "url(#folder-tab-left)" }}
-              >
+            <div className="col-span-1 lg:col-span-3 order-2 lg:order-1 lg:-translate-y-[50px] space-y-2 lg:space-y-3">
+              <div className="group relative bg-hemora-bg aspect-3/4 rounded-2xl lg:rounded-none overflow-hidden lg:overflow-visible border border-hemora-border lg:border-none shadow-xs lg:[clip-path:url(#folder-tab-left)]">
                 <Image
                   src="/images/hero-before-donation.webp"
                   alt="Premier entretien convivial avant le don de sang"
@@ -140,11 +137,8 @@ export function HeroSection() {
             </div>
 
             {/* VISUEL 3 : APRÈS LE DON (Droite sur Desktop, Bas-Droite sur Mobile) */}
-            <div className="col-span-1 lg:col-span-3 order-3 lg:order-3 lg:-translate-y-[85px] space-y-2 lg:space-y-3">
-              <div
-                className="group relative bg-hemora-bg aspect-3/4 rounded-xl lg:rounded-none overflow-hidden lg:overflow-visible border lg:border-none border-hemora-border shadow-xs"
-                style={{ clipPath: "url(#folder-tab-right)" }}
-              >
+            <div className="col-span-1 lg:col-span-3 order-3 lg:order-3 lg:-translate-y-[50px] space-y-2 lg:space-y-3">
+              <div className="group relative bg-hemora-bg aspect-3/4 rounded-2xl lg:rounded-none overflow-hidden lg:overflow-visible border border-hemora-border lg:border-none shadow-xs lg:[clip-path:url(#folder-tab-right)]">
                 <Image
                   src="/images/hero-after-donation.webp"
                   alt="Moment de détente et collation après le don de sang"
